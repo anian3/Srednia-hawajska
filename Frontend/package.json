@@ -2,7 +2,9 @@
   "scripts": {
     "dev": "next dev",
     "lint": "npx eslint ./pages && echo Linting was successful. No errors were found. || echo Linting failed. Errors were found.",
-    "test": "echo 'No tests specified to run'"
+    "test": "echo 'No tests specified to run'",
+    "pretty": "yarn prettier --write \"./pages/**.{ts,tsx}\"",
+    "pretty-check": "yarn prettier --check \"./pages/**.{ts,tsx}\""
   },
   "dependencies": {
     "next": "^14.0.1",
@@ -14,6 +16,7 @@
     "@types/node": "^20.8.9",
     "@types/react": "^18.2.33",
     "eslint": "^8.57.0",
+    "prettier": "^3.2.5",
     "typescript": "^5.4.5",
     "typescript-eslint": "^7.8.0"
   },

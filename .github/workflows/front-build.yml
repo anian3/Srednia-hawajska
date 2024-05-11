@@ -23,8 +23,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run ESLint
-        run: npm run lint
+      - name: Run Lint and Static Analysis
+        run: npm run lint && npm run pretty-check
 
       - name: Run Tests
         run: npm run test
