@@ -1,0 +1,20 @@
+{
+  "name": "srednia-hawajska",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "front-linter": "cd Frontend && npx eslint ./pages",
+    "back-linter": "cd Backend/rest-service && gradle check"
+  },
+  "author": "Jakub Wos <jakub.wos0@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "pre-commit": "^1.2.2"
+  },
+  "pre-commit": [
+    "front-linter",
+    "back-linter"
+
+  ]
+}

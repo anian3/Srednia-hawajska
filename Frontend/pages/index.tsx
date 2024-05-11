@@ -1,6 +1,5 @@
 //index.html
 import React, {useEffect, useState } from 'react';
-import { UUID } from 'crypto';
 
 const SERVER_URL = "http://localhost:8080";
 const QUIZ_ENDPOINT = SERVER_URL + "/quiz";
