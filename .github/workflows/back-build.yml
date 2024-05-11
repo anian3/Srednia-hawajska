@@ -21,7 +21,7 @@ jobs:
         java-version: '17'
 
     - name: Run Checkstyle
-      run: ./gradlew checkstyleMain
+      run: ./gradle check
 
     - name: Run Gradle Tests
-      run: ./gradlew test
+      run: ./gradle test
