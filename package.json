@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "front-linter": "cd Frontend && npx eslint ./pages && echo 'Frontend linting was successful. No errors were found.' || echo 'Linting failed. Errors were found.'",
+    "front-linter": "cd Frontend && npm run lint",
     "back-linter": "cd Backend/rest-service && gradle check"
   },
   "author": "Jakub Wos <jakub.wos0@gmail.com>",

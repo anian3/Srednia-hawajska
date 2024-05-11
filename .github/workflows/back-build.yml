@@ -1,0 +1,27 @@
+name: Backend Build
+
+on:
+  push:
+
+jobs:
+  ci-pipeline:
+    name: Validate and Build Backend
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./Backend/rest-service
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup JDK
+      uses: actions/setup-java@v2
+      with:
+        java-version: '17'
+
+    - name: Run Checkstyle
+      run: ./gradlew checkstyleMain
+
+    - name: Run Gradle Tests
+      run: ./gradlew test
