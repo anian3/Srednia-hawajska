@@ -5,7 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "front-linter": "cd Frontend && npm run lint",
-    "back-linter": "cd Backend/rest-service && gradle check"
+    "back-linter": "cd Backend/rest-service && gradlew checkstyleMain && gradlew checkstyleTest"
   },
   "author": "Jakub Wos <jakub.wos0@gmail.com>",
   "license": "ISC",
