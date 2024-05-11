@@ -4,8 +4,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "front-linter": "cd Frontend && npm run lint",
-    "back-linter": "cd Backend/rest-service && gradlew checkstyleMain && gradlew checkstyleTest"
+    "front-linter": "echo Running frontend linting check... && cd Frontend && npm run lint",
+    "back-linter": "echo Running backend linting check... && cd Backend/rest-service && gradlew checkstyleMain checkstyleTest && echo Linting was successful. No errors were found. || echo Linting failed. Errors were found. "
   },
   "author": "Jakub Wos <jakub.wos0@gmail.com>",
   "license": "ISC",

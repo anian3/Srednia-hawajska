@@ -1,7 +1,7 @@
 {
   "scripts": {
     "dev": "next dev",
-    "lint": "npx eslint ./pages && echo 'Frontend linting was successful. No errors were found.' || echo 'Linting failed. Errors were found.'",
+    "lint": "npx eslint ./pages && echo Linting was successful. No errors were found. || echo Linting failed. Errors were found.",
     "test": "echo 'No tests specified to run'"
   },
   "dependencies": {
