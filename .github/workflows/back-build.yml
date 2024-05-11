@@ -7,13 +7,18 @@ jobs:
   ci-pipeline:
     name: Validate and Build Backend
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./Backend/rest-service
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '18'
+
+    - name: Install dependencies
+      run: npm install
 
     - name: Setup JDK
       uses: actions/setup-java@v4
@@ -22,7 +27,10 @@ jobs:
         java-version: '17'
 
     - name: Run Checkstyle
-      run: ./gradlew check
+      run: cd Backend/rest-service && ./gradlew check
+
+    - name: Style Analysis
+      run: npm run back-pretty-check 
 
     - name: Run Gradle Tests
-      run: ./gradlew test
+      run: cd Backend/rest-service && ./gradlew test

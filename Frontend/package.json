@@ -3,8 +3,8 @@
     "dev": "next dev",
     "lint": "npx eslint ./pages && echo Linting was successful. No errors were found. || echo Linting failed. Errors were found.",
     "test": "echo 'No tests specified to run'",
-    "pretty": "yarn prettier --write \"./pages/**.{ts,tsx}\"",
-    "pretty-check": "yarn prettier --check \"./pages/**.{ts,tsx}\""
+    "pretty": "npx prettier --write \"./pages/**.{ts,tsx}\"",
+    "pretty-check": "npx prettier --check \"./pages/**.{ts,tsx}\""
   },
   "dependencies": {
     "next": "^14.0.1",

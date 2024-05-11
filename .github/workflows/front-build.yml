@@ -24,7 +24,10 @@ jobs:
         run: npm install
 
       - name: Run Lint and Static Analysis
-        run: npm run lint && npm run pretty-check
+        run: npm run lint 
+
+      - name: Style Analysis
+        run: npm run pretty-check
 
       - name: Run Tests
         run: npm run test

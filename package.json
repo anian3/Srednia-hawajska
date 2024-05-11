@@ -6,16 +6,20 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "front-linter": "echo Running frontend linting check... && cd Frontend && npm run lint",
     "front-pretty": "cd Frontend && npm run pretty",
-    "back-linter": "echo Running backend linting check... && cd Backend/rest-service && gradlew -q checkstyleMain checkstyleTest && echo Linting was successful. No errors were found. || echo Linting failed. Errors were found. "
+    "back-linter": "echo Running backend linting check... && cd Backend/rest-service && gradlew -q checkstyleMain checkstyleTest && echo Linting was successful. No errors were found. || echo Linting failed. Errors were found. ",
+    "back-pretty": "npx prettier --write \"**.java\"",
+    "back-pretty-check": "npx prettier --check \"**.java\""
   },
   "author": "Jakub Wos <jakub.wos0@gmail.com>",
   "license": "ISC",
   "devDependencies": {
-    "pre-commit": "^1.2.2"
+    "pre-commit": "^1.2.2",
+    "prettier-plugin-java": "^2.6.0"
   },
   "pre-commit": [
     "front-linter",
     "back-linter",
-    "front-pretty"
+    "front-pretty",
+    "back-pretty"
   ]
 }
