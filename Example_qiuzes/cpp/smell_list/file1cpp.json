@@ -1,0 +1,18 @@
+{
+    "language": "python",
+    "smells": {
+        "irrelevant comment":[
+            5, 10
+        ],
+        "confusing name":[
+            3,5
+        ],
+        "confusing indent":[
+            5,6
+        ],
+        "too long line":[
+            7
+        ]
+    }
+    
+}

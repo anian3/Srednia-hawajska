@@ -1,0 +1,18 @@
+{
+    "language": "python",
+    "smells": {
+        "too long comment":[
+            [1,6]
+        ],
+        "confusing function name":[
+            13
+        ],
+        "too many empty lines":[
+            [7,12],[17,20]
+        ],
+        "commented code fragment":[
+            [24,27]
+        ]
+    }
+    
+}

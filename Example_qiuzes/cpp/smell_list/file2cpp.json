@@ -1,0 +1,15 @@
+{
+    "language": "cpp",
+    "smells": {
+        "confusing name":[
+            3,4
+        ],
+        "too many empty lines":[
+            [5,11]
+        ],
+        "too many variables":[
+            4
+        ]
+    }
+    
+}
