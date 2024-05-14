@@ -23,14 +23,14 @@ const CodeSmellList = () => {
     <Card border="dark" bg="light" style={{ width: "36rem" }}>
       <Card.Body>
         <Card.Title>Code Smells</Card.Title>
-        <Card.Subtitle className="mb-2 text-muted">
+        {/* <Card.Subtitle className="mb-2 text-muted">
           Common indicators of code issues
         </Card.Subtitle>
         <Card.Text>
           Code smells are certain patterns in code that may indicate deeper
           problems. Identifying and addressing these smells can lead to better
           maintainability and readability of code.
-        </Card.Text>
+        </Card.Text> */}
         <InteractiveList
           items={items}
           selectedItemId={selectedItemId}
