@@ -1,14 +1,14 @@
 {
-    "language": "python",
+    "language": "cpp",
     "smells": {
         "irrelevant comment":[
-            5, 10
+            5, 9
         ],
         "confusing name":[
             3,5
         ],
         "confusing indent":[
-            5,6
+            4,5
         ],
         "too long line":[
             7
