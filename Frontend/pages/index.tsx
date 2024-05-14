@@ -7,24 +7,24 @@ const SERVER_URL = "http://localhost:8080";
 const QUIZ_ENDPOINT = SERVER_URL + "/quiz";
 
 const MainPage = () => {
-  const [quiz, setQuiz] = useState<string>(null);
+    const [quiz, setQuiz] = useState<string>(null);
 
-  useEffect(() => {
-    fetch(QUIZ_ENDPOINT, {
-      method: "GET",
-    })
-      .then((rs) => rs.text())
-      .then((text) => setQuiz(text));
-  }, []);
+    useEffect(() => {
+        fetch(QUIZ_ENDPOINT, {
+            method: "GET",
+        })
+            .then((rs) => rs.text())
+            .then((text) => setQuiz(text));
+    }, []);
 
-  return (
-    <>
-      <div className="mainContainer">
-        <p>{quiz}</p>
-      </div>
-      <CodeSmellList></CodeSmellList>
-    </>
-  );
+    return (
+        <>
+            <div className="mainContainer">
+                <p>{quiz}</p>
+            </div>
+            <CodeSmellList></CodeSmellList>
+        </>
+    );
 };
 
 export default MainPage;
