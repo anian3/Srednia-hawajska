@@ -9,11 +9,11 @@ const CodeSmellList = () => {
     { id: 3, label: "Option 3" },
   ];
 
-  const [selectedItemId, setSelectedItemId] = useState<
-    string | number | undefined
-  >();
+  const [selectedItemIds, setSelectedItemId] = useState<
+    (string | number)[]
+  >([]);
 
-  const handleItemClick = (itemId: string | number) => {
+  const handleItemClick = (itemId: (string | number)[]) => {
     setSelectedItemId(itemId);
     // Do something with the selected item ID logging for now
     console.log();
@@ -33,7 +33,7 @@ const CodeSmellList = () => {
         </Card.Text> */}
         <InteractiveList
           items={items}
-          selectedItemId={selectedItemId}
+          selectedItemsIds={selectedItemIds}
           onItemClick={handleItemClick}
           variant="light"
         />

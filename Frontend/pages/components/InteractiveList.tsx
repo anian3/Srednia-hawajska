@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { ListGroup } from "react-bootstrap";
 
 type ListStyleVariant =
@@ -18,24 +18,52 @@ interface ListItem {
 
 interface ListGroupProps {
   items: ListItem[];
-  selectedItemId: string | number | undefined;
-  onItemClick: (item: ListItem["id"]) => void;
+  selectedItemsIds: (string | number)[];
+  onItemClick: (selectedItems: (string | number)[]) => void;
   variant?: ListStyleVariant;
 }
 
 function InteractiveList({
   items,
-  selectedItemId,
+  selectedItemsIds,
   onItemClick,
   variant = "primary",
 }: ListGroupProps) {
+  const [isMouseDown, setIsMouseDown] = useState(false);
+
+  const handleMouseDown = (id: string | number) => {
+    setIsMouseDown(true);
+    handleItemClick(id);
+  };
+
+  const handleMouseUp = () => {
+    setIsMouseDown(false);
+  };
+
+  const handleMouseEnter = (id: string | number) => {
+    if (isMouseDown) {
+      handleItemClick(id);
+    }
+  };
+
+  const handleItemClick = (id: string | number) => {
+    const newSelectedItems = selectedItemsIds.includes(id)
+      ? selectedItemsIds.filter((itemId) => itemId !== id)
+      : [...selectedItemsIds, id];
+    onItemClick(newSelectedItems);
+  };
+
   return (
-    <ListGroup>
+    <ListGroup
+      onMouseUp={handleMouseUp}
+      onMouseLeave={handleMouseUp}
+    >
       {items.map((item) => (
         <ListGroup.Item
           key={item.id}
-          active={selectedItemId === item.id}
-          onClick={() => onItemClick(item.id)}
+          active={selectedItemsIds.includes(item.id)}
+          onMouseDown={() => handleMouseDown(item.id)}
+          onMouseEnter={() => handleMouseEnter(item.id)}
           variant={variant}
           action
         >
