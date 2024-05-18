@@ -8,14 +8,14 @@ interface ListItem {
     label: string;
 }
 
-interface ListGroupProps {
+interface InteractiveListProps {
     items: ListItem[];
     selectedItemId: string | number | undefined;
     onItemClick: (item: ListItem["id"]) => void;
     variant?: ListStyleVariant;
 }
 
-function InteractiveList({ items, selectedItemId, onItemClick, variant = "primary" }: ListGroupProps) {
+function InteractiveList({ items, selectedItemId, onItemClick, variant = "primary" }: InteractiveListProps) {
     return (
         <ListGroup>
             {items.map((item) => (

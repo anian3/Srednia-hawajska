@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Card from "react-bootstrap/Card";
 import InteractiveList from "./InteractiveList";
+import { Settings } from "../config/settings";
 
 const CodeSmellList = () => {
     const items = [
@@ -18,7 +19,7 @@ const CodeSmellList = () => {
     };
 
     return (
-        <Card border="dark" bg="light" style={{ width: "36rem" }}>
+        <Card border="dark" bg={Settings.COMPONENT_VARIANT} style={{ width: "36rem" }}>
             <Card.Body>
                 <Card.Title>Code Smells</Card.Title>
                 {/* <Card.Subtitle className="mb-2 text-muted">
@@ -33,7 +34,7 @@ const CodeSmellList = () => {
                     items={items}
                     selectedItemId={selectedItemId}
                     onItemClick={handleItemClick}
-                    variant="light"
+                    variant={Settings.COMPONENT_VARIANT}
                 />
             </Card.Body>
         </Card>

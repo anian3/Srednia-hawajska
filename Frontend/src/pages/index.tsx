@@ -3,19 +3,48 @@ import { PageType } from "../types/types";
 import { Settings } from "../config/settings";
 import CodeSmellList from "../components/CodeSmellList";
 import "bootstrap/dist/css/bootstrap.min.css";
+import QuizTypeSelectionPage from "./QuizTypeSelectionPage/QuizSelectionPage";
+import QuizFileSelectionPage from "./QuizFileSelectionPage/QuizFileSelectionPage";
 
 const MainPage = () => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [currentPage, setCurrentPage] = useState<PageType>(PageType.QUIZ);
+    const [currentPage, setCurrentPage] = useState<PageType>(PageType.QUIZ_TYPE_SELECTION);
+    const [selectedQuizId, setSelectedQuizId] = useState<string | undefined>(undefined);
+
+
     switch (currentPage) {
         case PageType.QUIZ_TYPE_SELECTION: {
-            // TODO
-            return <></>;
+            // TODO: fetch these
+            const dummyQuizzes = [
+                { id: "1", name: "Quiz 1" },
+                { id: "2", name: "Quiz 2" },
+                { id: "3", name: "Quiz 3" },
+            ];
+
+            const playerName = "Marek";
+
+            return (
+                <>
+                    <QuizTypeSelectionPage
+                        quizzes={dummyQuizzes}
+                        playerName={playerName}
+                        onQuizChosen={(quizId: string) => {
+                            setSelectedQuizId(quizId)
+                            setCurrentPage(PageType.QUIZ_FILE_SELECTION);
+                        }}
+                    ></QuizTypeSelectionPage>
+                </>
+            );
         }
 
-        case PageType.QUIZ_LEVEL_SELECTION: {
+        case PageType.QUIZ_FILE_SELECTION: {
+            if (!selectedQuizId) throw Error("Quiz was not chosen!")
             // TODO
-            return <></>;
+            return (
+                <>
+                    <QuizFileSelectionPage></QuizFileSelectionPage>
+                </>
+            );
         }
 
         case PageType.QUIZ: {
