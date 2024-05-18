@@ -11,7 +11,6 @@ const MainPage = () => {
     const [currentPage, setCurrentPage] = useState<PageType>(PageType.QUIZ_TYPE_SELECTION);
     const [selectedQuizId, setSelectedQuizId] = useState<string | undefined>(undefined);
 
-
     switch (currentPage) {
         case PageType.QUIZ_TYPE_SELECTION: {
             // TODO: fetch these
@@ -29,7 +28,7 @@ const MainPage = () => {
                         quizzes={dummyQuizzes}
                         playerName={playerName}
                         onQuizChosen={(quizId: string) => {
-                            setSelectedQuizId(quizId)
+                            setSelectedQuizId(quizId);
                             setCurrentPage(PageType.QUIZ_FILE_SELECTION);
                         }}
                     ></QuizTypeSelectionPage>
@@ -38,7 +37,7 @@ const MainPage = () => {
         }
 
         case PageType.QUIZ_FILE_SELECTION: {
-            if (!selectedQuizId) throw Error("Quiz was not chosen!")
+            if (!selectedQuizId) throw Error("Quiz was not chosen!");
             // TODO
             return (
                 <>
