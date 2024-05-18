@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { PageType } from "../types/types";
-import { Settings } from "../config/settings";
-import CodeSmellList from "../components/CodeSmellList";
 import "bootstrap/dist/css/bootstrap.min.css";
 import QuizTypeSelectionPage from "./QuizTypeSelectionPage/QuizTypeSelectionPage";
 import QuizSelectionPage from "./QuizSelectionPage/QuizSelectionPage";

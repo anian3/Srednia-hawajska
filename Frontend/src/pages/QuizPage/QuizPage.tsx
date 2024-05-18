@@ -12,7 +12,6 @@ const QuizPage = ({ selectedQuiz }: QuizPageProps) => {
             <div>{selectedQuiz}</div>
             <CodeSmellList></CodeSmellList>
         </>
-
     );
 };
 
