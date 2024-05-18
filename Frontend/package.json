@@ -4,7 +4,7 @@
     "lint": "npx eslint ./src && echo Linting was successful. No errors were found. || echo Linting failed. Errors were found.",
     "test": "echo 'No tests specified to run'",
     "pretty": "npx prettier --write \"./src/**/*.{ts,tsx}\"",
-    "pretty-check": "npx prettier --check \"./src/**.{ts,tsx}\""
+    "pretty-check": "npx prettier --check \"./src/**/*.{ts,tsx}\""
   },
   "dependencies": {
     "bootstrap": "^5.3.3",
