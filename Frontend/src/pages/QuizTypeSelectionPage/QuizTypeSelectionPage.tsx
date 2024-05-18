@@ -2,18 +2,18 @@ import React from "react";
 import { Card, ListGroup } from "react-bootstrap";
 import { Settings } from "../../config/settings";
 
-interface Quiz {
+interface QuizType {
     name: string;
     id: string;
 }
 
 export interface QuizTypeSelectionPageProps {
-    quizzes: Quiz[];
+    quizTypes: QuizType[];
     playerName: string;
-    onQuizChosen: (quizId: string) => void;
+    onQuizChosen: (quizTypeId: string) => void;
 }
 
-function QuizTypeSelectionPage({ quizzes, playerName, onQuizChosen }: QuizTypeSelectionPageProps) {
+function QuizTypeSelectionPage({ quizTypes, playerName, onQuizChosen }: QuizTypeSelectionPageProps) {
     return (
         <Card className="mt-5">
             <Card.Header className="position-relative text-center">
@@ -27,7 +27,7 @@ function QuizTypeSelectionPage({ quizzes, playerName, onQuizChosen }: QuizTypeSe
             </Card.Header>
             <Card.Body>
                 <ListGroup style={{ maxWidth: "60%", margin: "0 auto", overflowY: "auto" }}>
-                    {quizzes.map((item) => (
+                    {quizTypes.map((item) => (
                         <ListGroup.Item
                             key={item.id}
                             onClick={() => onQuizChosen(item.id)}
