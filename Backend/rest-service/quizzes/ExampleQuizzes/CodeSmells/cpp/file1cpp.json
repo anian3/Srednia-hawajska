@@ -1,0 +1,49 @@
+
+{
+    "id": "cpp/file1cpp.txt",
+    "type": "file",
+    "language": "cpp",
+    "categories": [
+        "irrelevant comment",
+        "confusing name",
+        "confusing indent",
+        "too long line"
+    ],
+    "codesmell": [
+        {
+            "linebegin": 6,
+            "lineend": 6,
+            "category": "irrelevant comment"
+        },
+        {
+            "linebegin": 9,
+            "lineend": 9,
+            "category": "irrelevant comment"
+        },
+        {
+            "linebegin": 3,
+            "lineend": 3,
+            "category": "confusing name"
+        },
+        {
+            "linebegin": 5,
+            "lineend": 5,
+            "category": "confusing name"
+        },
+        {
+            "linebegin": 4,
+            "lineend": 4,
+            "category":  "confusing indent"
+        },
+        {
+            "linebegin": 5,
+            "lineend": 5,
+            "category":  "confusing indent"
+        },
+        {
+            "linebegin": 7,
+            "lineend": 7,
+            "category": "too long line"
+        }
+    ]   
+}

@@ -1,0 +1,33 @@
+{
+    "id": "cpp/file2cpp.txt",
+    "type": "file",
+    "language": "cpp",
+    "categories": [
+        "confusing name",
+        "too many empty lines",
+        "too many variables",
+        "too long line"
+    ],
+    "codesmell": [
+        {
+            "linebegin": 3,
+            "lineend": 3,
+            "category": "confusing name"
+        },
+        {
+            "linebegin": 4,
+            "lineend": 4,
+            "category": "confusing name"
+        },
+        {
+            "linebegin": 5,
+            "lineend": 11,
+            "category":  "too many empty lines"
+        },
+        {
+            "linebegin": 4,
+            "lineend": 4,
+            "category":  "too many variables"
+        }
+    ]  
+}
