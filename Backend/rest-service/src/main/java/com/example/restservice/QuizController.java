@@ -17,20 +17,17 @@ public class QuizController {
     private static final String SMELLS_INJECT = "/CodeSmells/";
     private static final String CODE_INJECT = "/Quizzes/";
 
-
     private Path internalPath(String quiz, String path, String inject) {
         return Paths.get(QUIZZES_DIR_PATH + quiz + inject + path);
     }
 
     @GetMapping("/apiv1/quizfile")
-    public String Quizfile(@RequestParam String quiz, @RequestParam String path)
-        throws IOException {
-        return Files.readString(internalPath(quiz,path,SMELLS_INJECT));
+    public String Quizfile(@RequestParam String quiz, @RequestParam String path) throws IOException {
+        return Files.readString(internalPath(quiz, path, SMELLS_INJECT));
     }
 
     @GetMapping("/apiv1/codefile")
-    public String Codefile(@RequestParam String quiz, @RequestParam String path)
-        throws IOException {
-        return Files.readString(internalPath(quiz,path,CODE_INJECT));
+    public String Codefile(@RequestParam String quiz, @RequestParam String path) throws IOException {
+        return Files.readString(internalPath(quiz, path, CODE_INJECT));
     }
 }
