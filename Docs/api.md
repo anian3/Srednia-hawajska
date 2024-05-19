@@ -20,8 +20,10 @@ Przechowywanie code smelli: mamy dwa katalogi: quizzes i code smells, w nich pod
 Żeby nie przesyłać niepotrzebnie tych samych danych między frontem a backiem ocenianie quizu robimy na froncie.
 
 ### Endpointy
--  plik po kluczu (ścieżka jako klucz)
-    - request: GET apiv1/quizfile/{path}
+-  plik z codesmellami po kluczu (ścieżka jako klucz)
+    - request: GET apiv1/quizfile/
+    - param quiz: z którego quizu bierzemy
+    - param path: ścieżka do pliku
     - response - json w formacie jak poniżej:
 ```JSON
 {
@@ -46,6 +48,12 @@ Przechowywanie code smelli: mamy dwa katalogi: quizzes i code smells, w nich pod
     ]
 }
 ```
+-  plik z kodem po kluczu (ścieżka jako klucz)
+    - request: GET apiv1/codefile/
+    - param quiz: z którego quizu bierzemy
+    - param path: ścieżka do pliku
+    - response - plaintext pliku.
+
 - lista quizów (nazwy i ścieżki do korzenia)
     - request: GET apiv1/quizzes
     - response - zwraca listę id czyli ścieżek do root katalogu quizów:
