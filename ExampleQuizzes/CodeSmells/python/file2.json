@@ -1,0 +1,38 @@
+{
+    "id": "python/file2.txt",
+    "type": "file",
+    "language": "python",
+    "categories": [
+        "too long comment",
+        "confusing function name",
+        "too many empty lines",
+        "commented code"
+    ],
+    "codesmell": [
+        {
+            "linebegin": 1,
+            "lineend": 6,
+            "category": "too long comment"
+        },
+        {
+            "linebegin": 7,
+            "lineend": 12,
+            "category": "too many empty lines"
+        },
+        {
+            "linebegin": 17,
+            "lineend": 20,
+            "category": "too many empty lines"
+        },
+        {
+            "linebegin": 13,
+            "lineend": 13,
+            "category": "confusing function name"
+        },
+        {
+            "linebegin": 24,
+            "lineend": 27,
+            "category": "commented code"
+        }
+    ]      
+}
