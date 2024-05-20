@@ -18,3 +18,10 @@ export type QuizData = {
     categories: string[];
     codesmell: CodeSmell[];
 };
+
+export type CheckQuizResult = {
+    correct: CodeSmell[];
+    missed: CodeSmell[];
+    extra: CodeSmell[];
+    misclassified: CodeSmell[];
+}
