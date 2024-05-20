@@ -3,4 +3,5 @@ export enum PageType {
     QUIZ_SELECTION = "quiz_selection",
     QUIZ = "quiz",
     RESULTS = "results",
+    TEXT_SELECTION = "TEXT_SELECTION",
 }

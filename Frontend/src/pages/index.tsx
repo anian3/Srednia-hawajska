@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import QuizTypeSelectionPage from "./QuizTypeSelectionPage/QuizTypeSelectionPage";
 import QuizSelectionPage from "./QuizSelectionPage/QuizSelectionPage";
 import QuizPage from "./QuizPage/QuizPage";
+import TextSelectionComponent from "../components/TextSelectionComponent";
 
 const MainPage = () => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -91,6 +92,26 @@ const MainPage = () => {
             // TODO
             return <></>;
         }
+
+        case PageType.TEXT_SELECTION: {
+            const text =
+            `import matplotlib.pyplot as np
+            import pandas as plt
+            import numpy as pd
+            
+            #TODO: bake cheesecake
+            for i in range(10):
+                for j in range(10):
+                    for k in range(10):
+                        for m in range(10):
+                            #pengiuns have knees
+                            askliduhf = 8`;
+          
+            return (
+              <TextSelectionComponent text={text} />
+            );
+        }
+          
     }
 };
 
