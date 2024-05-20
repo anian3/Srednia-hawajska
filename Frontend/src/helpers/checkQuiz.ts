@@ -1,5 +1,6 @@
 import { CodeSmell, QuizData, CheckQuizResult } from "../types/types";
 
+// works only if there are no two code smells witin the same line range
 export function checkQuiz(userInput: CodeSmell[], data: QuizData): CheckQuizResult {
     const actualSmells: CodeSmell[] = data.codesmell;
 
@@ -41,36 +42,3 @@ export function checkQuiz(userInput: CodeSmell[], data: QuizData): CheckQuizResu
 
     return { correct, missed, extra, misclassified };
 }
-
-// example quiz data
-const data: QuizData = {
-    id: "quiz1/plik1.txt",
-    type: "file",
-    language: "python",
-    categories: ["kategoria1", "kategoria2"],
-    codesmell: [
-        {
-            linebegin: 2,
-            lineend: 2,
-            category: "kategoria1",
-        },
-        {
-            linebegin: 7,
-            lineend: 10,
-            category: "kategoria2",
-        },
-        {
-            linebegin: 7,
-            lineend: 10,
-            category: "kategoria3",
-        },
-    ],
-};
-
-// Example user input
-const userInput: CodeSmell[] = [
-    { linebegin: 2, lineend: 2, category: "kategoria1" },
-    { linebegin: 7, lineend: 10, category: "kategoria2" },
-];
-
-console.log(checkQuiz(userInput, data));
