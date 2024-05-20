@@ -1,4 +1,4 @@
-import {CodeSmell, QuizData} from "../types/types"
+import { CodeSmell, QuizData } from "../types/types";
 
 const data: QuizData = {
     id: "quiz1/plik1.txt",
