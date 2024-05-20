@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import CodeSmellList from "../../components/CodeSmellList";
 import QuizResult from "../../components/QuizResult";
 
@@ -26,16 +26,15 @@ const QuizPage = ({ selectedQuiz }: QuizPageProps) => {
         setSubmitted(true);
     };
 
-
     return (
         <div className="d-flex">
-            <div style={{ flex: 1, padding: '1rem' }}>
+            <div style={{ flex: 1, padding: "1rem" }}>
                 <div>QuizPage</div>
                 <div>{selectedQuiz}</div>
                 <CodeSmellList items={items} />
                 {!submitted && <button onClick={handleQuizSubmit}>Submit</button>}
             </div>
-            <div style={{ flex: 1, padding: '1rem' }}>
+            <div style={{ flex: 1, padding: "1rem" }}>
                 {submitted && <QuizResult score={score} mistakes={mistakes} />}
             </div>
         </div>
