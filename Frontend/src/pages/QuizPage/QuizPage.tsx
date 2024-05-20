@@ -6,11 +6,16 @@ interface QuizPageProps {
 }
 
 const QuizPage = ({ selectedQuiz }: QuizPageProps) => {
+    const items = [
+        { id: "1", label: "Option 1" },
+        { id: "2", label: "Option 2" },
+        { id: "3", label: "Option 3" },
+    ];
     return (
         <>
             <div>QuizPage</div>
             <div>{selectedQuiz}</div>
-            <CodeSmellList></CodeSmellList>
+            <CodeSmellList items={items}></CodeSmellList>
         </>
     );
 };

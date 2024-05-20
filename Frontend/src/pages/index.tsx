@@ -42,16 +42,6 @@ const MainPage = () => {
         },
     ];
 
-    // const QUIZ_ENDPOINT = Settings.SERVER_URL + "/quiz";
-    // const [quiz, setQuiz] = useState<string>(null);
-    // useEffect(() => {
-    //     fetch(QUIZ_ENDPOINT, {
-    //         method: "GET",
-    //     })
-    //         .then((rs) => rs.text())
-    //         .then((text) => setQuiz(text));
-    // }, []);
-
     const playerName = "Marek";
 
     switch (currentPage) {

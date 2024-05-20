@@ -3,13 +3,11 @@ import Card from "react-bootstrap/Card";
 import InteractiveList from "./InteractiveList";
 import { Settings } from "../config/settings";
 
-const CodeSmellList = () => {
-    const items = [
-        { id: 1, label: "Option 1" },
-        { id: 2, label: "Option 2" },
-        { id: 3, label: "Option 3" },
-    ];
+interface CodeSmellListProps {
+    items: {id: string, label: string}[]
+}
 
+const CodeSmellList = ({items}: CodeSmellListProps) => {
     const [selectedItemId, setSelectedItemId] = useState<string | number | undefined>();
 
     const handleItemClick = (itemId: string | number) => {
