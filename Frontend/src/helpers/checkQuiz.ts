@@ -9,13 +9,13 @@ export function checkQuiz(userInput: CodeSmell[], data: QuizData): CheckQuizResu
     const misclassified: CodeSmell[] = [];
 
     const actualSmellMap = new Map<string, CodeSmell>();
-    actualSmells.forEach(smell => {
+    actualSmells.forEach((smell) => {
         const key = `${smell.linebegin},${smell.lineend},${smell.category}`;
         actualSmellMap.set(key, smell);
     });
 
     const userSmellMap = new Map<string, CodeSmell>();
-    userInput.forEach(input => {
+    userInput.forEach((input) => {
         const key = `${input.linebegin},${input.lineend},${input.category}`;
         userSmellMap.set(key, input);
     });
@@ -63,7 +63,7 @@ const data: QuizData = {
             linebegin: 7,
             lineend: 10,
             category: "kategoria3",
-        }
+        },
     ],
 };
 

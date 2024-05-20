@@ -24,4 +24,4 @@ export type CheckQuizResult = {
     missed: CodeSmell[];
     extra: CodeSmell[];
     misclassified: CodeSmell[];
-}
+};
