@@ -4,10 +4,10 @@ import InteractiveList from "./InteractiveList";
 import { Settings } from "../config/settings";
 
 interface CodeSmellListProps {
-    items: {id: string, label: string}[]
+    items: { id: string; label: string }[];
 }
 
-const CodeSmellList = ({items}: CodeSmellListProps) => {
+const CodeSmellList = ({ items }: CodeSmellListProps) => {
     const [selectedItemId, setSelectedItemId] = useState<string | number | undefined>();
 
     const handleItemClick = (itemId: string | number) => {
