@@ -14,25 +14,29 @@ const MainPage = () => {
     //for active quiz
     const [smells, setSmells] = useState(undefined);
     const [code, setCode] = useState<string | undefined>(undefined);
-    
+
     const dummyQuizzes = [
         {
-            id : "ExampleQuizzes",
-            quizzes : [
+            id: "ExampleQuizzes",
+            quizzes: [
                 {
-                    id : "cpp/file1cpp",
-                    name : "C++ quiz 1"
-                }
-            ]
-        }
-    ]
+                    id: "cpp/file1cpp",
+                    name: "C++ quiz 1",
+                },
+            ],
+        },
+    ];
 
-    const fetchQuizfile = (quiz:string, path:string) => {
-        const smellsURL = `http://localhost:8080/apiv1/quizfile?quiz=${encodeURIComponent(quiz)}&path=${encodeURIComponent(path+'.json')}`;
-        const codeURL = `http://localhost:8080/apiv1/codefile?quiz=${encodeURIComponent(quiz)}&path=${encodeURIComponent(path+'.txt')}`;
-        fetch(smellsURL,).then(rs => rs.json()).then(json => setSmells(json));
-        fetch(codeURL).then(rs => rs.text()).then(txt => setCode(txt));
-    }
+    const fetchQuizfile = (quiz: string, path: string) => {
+        const smellsURL = `http://localhost:8080/apiv1/quizfile?quiz=${encodeURIComponent(quiz)}&path=${encodeURIComponent(path + ".json")}`;
+        const codeURL = `http://localhost:8080/apiv1/codefile?quiz=${encodeURIComponent(quiz)}&path=${encodeURIComponent(path + ".txt")}`;
+        fetch(smellsURL)
+            .then((rs) => rs.json())
+            .then((json) => setSmells(json));
+        fetch(codeURL)
+            .then((rs) => rs.text())
+            .then((txt) => setCode(txt));
+    };
 
     const playerName = "Marek";
 
@@ -62,7 +66,7 @@ const MainPage = () => {
                         quizzes={selectedQuizConfig.quizzes}
                         playerName={playerName}
                         onQuizChosen={(quizId: string) => {
-                            fetchQuizfile(selectedQuizConfig.id,quizId)
+                            fetchQuizfile(selectedQuizConfig.id, quizId);
                             setSelectedQuizId(quizId);
                             setCurrentPage(PageType.QUIZ);
                         }}
