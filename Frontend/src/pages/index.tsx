@@ -11,36 +11,28 @@ const MainPage = () => {
     const [selectedQuizTypeId, setSelectedQuizTypeId] = useState<string | undefined>(undefined);
     const [selectedQuizId, setSelectedQuizId] = useState<string | undefined>(undefined);
 
-    // TODO: fetch these
+    //for active quiz
+    const [smells, setSmells] = useState(undefined);
+    const [code, setCode] = useState<string | undefined>(undefined);
+    
     const dummyQuizzes = [
         {
-            id: "1",
-            name: "Type 1",
-            quizzes: [
-                { id: "T1 Q1", name: "T1 Quiz 1" },
-                { id: "T1 Q2", name: "T1 Quiz 2" },
-                { id: "T1 Q3", name: "T1 Quiz 3" },
-            ],
-        },
-        {
-            id: "2",
-            name: "Type 2",
-            quizzes: [
-                { id: "T2 Q1", name: "T2 Quiz 1" },
-                { id: "T2 Q2", name: "T2 Quiz 2" },
-                { id: "T2 Q3", name: "T2 Quiz 3" },
-            ],
-        },
-        {
-            id: "3",
-            name: "Type 3",
-            quizzes: [
-                { id: "T3 Q1", name: "T3 uiz 1" },
-                { id: "T3 Q2", name: "T3 uiz 2" },
-                { id: "T3 Q3", name: "T3 uiz 3" },
-            ],
-        },
-    ];
+            id : "ExampleQuizzes",
+            quizzes : [
+                {
+                    id : "cpp/file1cpp",
+                    name : "C++ quiz 1"
+                }
+            ]
+        }
+    ]
+
+    const fetchQuizfile = (quiz:string, path:string) => {
+        const smellsURL = `http://localhost:8080/apiv1/quizfile?quiz=${encodeURIComponent(quiz)}&path=${encodeURIComponent(path+'.json')}`;
+        const codeURL = `http://localhost:8080/apiv1/codefile?quiz=${encodeURIComponent(quiz)}&path=${encodeURIComponent(path+'.txt')}`;
+        fetch(smellsURL,).then(rs => rs.json()).then(json => setSmells(json));
+        fetch(codeURL).then(rs => rs.text()).then(txt => setCode(txt));
+    }
 
     const playerName = "Marek";
 
@@ -66,10 +58,11 @@ const MainPage = () => {
             return (
                 <>
                     <QuizSelectionPage
-                        selectedQuizType={selectedQuizConfig.name}
+                        selectedQuizType={selectedQuizConfig.id}
                         quizzes={selectedQuizConfig.quizzes}
                         playerName={playerName}
                         onQuizChosen={(quizId: string) => {
+                            fetchQuizfile(selectedQuizConfig.id,quizId)
                             setSelectedQuizId(quizId);
                             setCurrentPage(PageType.QUIZ);
                         }}
@@ -79,10 +72,9 @@ const MainPage = () => {
         }
 
         case PageType.QUIZ: {
-            const selectedQuiz = "Selected quiz with" + selectedQuizId;
             return (
                 <>
-                    <QuizPage selectedQuiz={selectedQuiz}></QuizPage>
+                    <QuizPage selectedQuiz={code}></QuizPage>
                 </>
             );
         }

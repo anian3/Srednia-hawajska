@@ -14,7 +14,7 @@ const QuizPage = ({ selectedQuiz }: QuizPageProps) => {
     return (
         <>
             <div>QuizPage</div>
-            <div>{selectedQuiz}</div>
+            <p>{selectedQuiz}</p>
             <CodeSmellList items={items}></CodeSmellList>
         </>
     );
