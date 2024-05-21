@@ -94,8 +94,8 @@ const MainPage = () => {
         }
 
         case PageType.TEXT_SELECTION: {
-            const text =
-            `import matplotlib.pyplot as np
+            const text = 
+`            import matplotlib.pyplot as np
             import pandas as plt
             import numpy as pd
             
@@ -106,12 +106,9 @@ const MainPage = () => {
                         for m in range(10):
                             #pengiuns have knees
                             askliduhf = 8`;
-          
-            return (
-              <TextSelectionComponent text={text} />
-            );
+
+            return <TextSelectionComponent text={text} />;
         }
-          
     }
 };
 
