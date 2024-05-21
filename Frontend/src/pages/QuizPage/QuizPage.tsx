@@ -12,8 +12,7 @@ const QuizPage = ({ selectedQuiz }: QuizPageProps) => {
         { id: "2", label: "Option 2" },
         { id: "3", label: "Option 3" },
     ];
-    const text = 
-`            import matplotlib.pyplot as np
+    const text = `            import matplotlib.pyplot as np
             import pandas as plt
             import numpy as pd
             

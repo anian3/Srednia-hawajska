@@ -16,8 +16,7 @@ const TextSelector: React.FC<TextSelectorProps> = ({ lines, selectedLineIndex, o
                     active={selectedLineIndex === index}
                     onClick={() => onLineClick(index)}
                     action
-                    style={{ paddingLeft: `${line.match(/^\s*/)[0].length * 0.5}rem`, height: '50px'}}
-
+                    style={{ paddingLeft: `${line.match(/^\s*/)[0].length * 0.5}rem`, height: "50px" }}
                 >
                     {line}
                 </ListGroup.Item>

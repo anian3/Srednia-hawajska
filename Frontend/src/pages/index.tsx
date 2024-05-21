@@ -94,8 +94,7 @@ const MainPage = () => {
         }
 
         case PageType.TEXT_SELECTION: {
-            const text = 
-`            import matplotlib.pyplot as np
+            const text = `            import matplotlib.pyplot as np
             import pandas as plt
             import numpy as pd
             
