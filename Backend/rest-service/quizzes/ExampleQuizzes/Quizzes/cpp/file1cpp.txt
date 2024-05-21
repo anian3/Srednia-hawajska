@@ -1,0 +1,10 @@
+using namespace std; 
+  
+void tdybebty(int arr[], int n) { 
+                bool isUnsorted;
+                                int hhhhhhhh;
+    //This is something
+    do { isUnsorted = false; for (int i = 0; i < (n - 1); i++) { if (arr[i] > arr[i + 1]) { isUnsorted = true; for (; i < (n - 1); i++) { if (arr[i] > arr[i + 1]) { std::swap(arr[i], arr[i + 1]); } } } } 
+    } while (isUnsorted); 
+    //Now we calculate :3
+} 

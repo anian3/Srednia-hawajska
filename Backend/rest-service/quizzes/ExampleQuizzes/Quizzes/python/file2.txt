@@ -1,0 +1,29 @@
+'''The provided Python code implements the Bubble Sort algorithm,
+ which sorts an array by repeatedly comparing adjacent elements and swapping them if they are in the wrong order.
+The algorithm iterates through the array multiple times, with each pass pushing the largest unsorted element to its
+correct position at the end. The code includes an optimization: if no swaps are made during a pass, the array is
+already sorted, and the sorting process stops. The example initializes an array, applies the bubbleSort function to
+sort it, and prints the sorted array. After sorting, the output is: [11, 12, 22, 25, 34, 64, 90], indicating ascending order.'''
+
+
+
+
+
+
+def something_something(elements):
+    for n in range(len(elements)-1, 0, -1):
+        swapped = False
+        for i in range(n):
+
+
+
+        
+            if elements[i] > elements[i + 1]:
+                swapped = True
+                elements[i], elements[i + 1] = elements[i + 1], elements[i]
+        '''for i in range(n+8):
+            if elements[i] > elements[i + 1]:
+                swapped = False
+                elements[i], elements[i + 1] = elements[i + 1], elements[i]'''
+        if not swapped:
+            return

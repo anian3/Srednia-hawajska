@@ -1,0 +1,38 @@
+{
+    "id": "python/file1.txt",
+    "type": "file",
+    "language": "python",
+    "categories": [
+        "irrelevant comment",
+        "confusing import",
+        "many nested fors",
+        "wrong variable's name"
+    ],
+    "codesmell": [
+        {
+            "linebegin": 5,
+            "lineend": 5,
+            "category": "irrelevant comment"
+        },
+        {
+            "linebegin": 10,
+            "lineend": 10,
+            "category": "irrelevant comment"
+        },
+        {
+            "linebegin": 1,
+            "lineend": 3,
+            "category": "confusing import"
+        },
+        {
+            "linebegin": 6,
+            "lineend": 9,
+            "category": "many nested fors"
+        },
+        {
+            "linebegin": 11,
+            "lineend": 11,
+            "category": "wrong variable's name"
+        }
+    ]   
+}
