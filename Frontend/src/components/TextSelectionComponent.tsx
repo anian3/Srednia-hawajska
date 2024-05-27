@@ -2,10 +2,14 @@ import React, { useState } from "react";
 import Card from "react-bootstrap/Card";
 import TextSelector from "./TextSelector";
 
-const TextSelectionComponent = ({ text }: { text: string }) => {
+interface TextSelectionComponentProps {
+    text: string;
+}
+
+const TextSelectionComponent = ({ text }: TextSelectionComponentProps) => {
     const [selectedLineIndex, setSelectedLineIndex] = useState<number | undefined>(undefined);
 
-    const lines = text.split("\n");
+    const lines = text ? text.split("\n") : [];
 
     const handleLineClick = (index: number) => {
         setSelectedLineIndex(index);
@@ -15,7 +19,7 @@ const TextSelectionComponent = ({ text }: { text: string }) => {
     return (
         <Card border="dark" bg="light" style={{ width: "36rem" }}>
             <Card.Body>
-                <Card.Title>Select a Line of Text</Card.Title>
+                <Card.Title>Select a Line of Code</Card.Title>
                 <div style={{ fontFamily: "monospace" }}>
                     {" "}
                     {}

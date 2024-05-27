@@ -18,18 +18,6 @@ const QuizPage = ({ selectedQuiz }: QuizPageProps) => {
         { id: "3", label: "Option 3" },
     ];
 
-    const text = `            import matplotlib.pyplot as np
-            import pandas as plt
-            import numpy as pd
-            
-            #TODO: bake cheesecake
-            for i in range(10):
-                for j in range(10):
-                    for k in range(10):
-                        for m in range(10):
-                            #pengiuns have knees
-                            askliduhf = 8`;
-
     const handleQuizSubmit = () => {
         const calculatedScore = 8;
         const quizMistakes = ["Mistake 1", "Mistake 2", "Mistake 3"];
@@ -45,7 +33,7 @@ const QuizPage = ({ selectedQuiz }: QuizPageProps) => {
                 <div>QuizPage</div>
                 <div>{selectedQuiz}</div>
                 <CodeSmellList items={items} />
-                <TextSelectionComponent text={text} />
+                <TextSelectionComponent text={selectedQuiz} />
                 {!submitted && <button onClick={handleQuizSubmit}>Submit</button>}
             </div>
             <div style={{ flex: 1, padding: "1rem" }}>
