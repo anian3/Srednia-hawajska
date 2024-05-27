@@ -10,7 +10,7 @@ interface QuizResultProps {
 
 const QuizResult: React.FC<QuizResultProps> = ({ score, mistakes }) => {
     return (
-        <div style={{ width: "16rem", margin: "auto", marginLeft: "60%" }}>
+        <div style={{ width: "16rem", margin: "auto"}}>
             <ScoreCard score={score} />
             {mistakes.length > 0 && <MistakesList mistakes={mistakes} />}
         </div>
