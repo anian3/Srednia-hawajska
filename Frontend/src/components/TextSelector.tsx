@@ -3,13 +3,11 @@ import { ListGroup } from "react-bootstrap";
 
 interface TextSelectorProps {
     lines: string[];
-    // selectedLineIndex: number | undefined;
     selectedRange: { start: number; end: number } | undefined;
     onLineClick: (index: number) => void;
-    selectionMode: "single" | "range";
 }
 
-const TextSelector: React.FC<TextSelectorProps> = ({ lines, selectedRange, onLineClick, selectionMode }) => {
+const TextSelector: React.FC<TextSelectorProps> = ({ lines, selectedRange, onLineClick }) => {
     const isLineSelected = (index: number) => {
         if (!selectedRange) return false;
         const { start, end } = selectedRange;
@@ -21,7 +19,6 @@ const TextSelector: React.FC<TextSelectorProps> = ({ lines, selectedRange, onLin
                 <ListGroup.Item
                     key={index}
                     active={isLineSelected(index + 1)}
-                    // active={selectedLineIndex === index + 1}
                     onClick={() => onLineClick(index + 1)}
                     action
                     style={{ paddingLeft: `${line.match(/^\s*/)[0].length * 0.5}rem`, height: "50px" }}
