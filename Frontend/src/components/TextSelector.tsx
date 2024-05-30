@@ -8,6 +8,11 @@ interface TextSelectorProps {
 }
 
 const TextSelector: React.FC<TextSelectorProps> = ({ lines, selectedLineIndex, onLineClick }) => {
+    const textSize = 16; // Assuming the text size is 16px
+    const paddingTop = 10; // 10px padding top
+    const paddingBottom = 10; // 10px padding bottom
+    const minHeight = textSize + paddingTop + paddingBottom;
+
     return (
         <ListGroup>
             {lines.map((line, index) => (
@@ -16,7 +21,12 @@ const TextSelector: React.FC<TextSelectorProps> = ({ lines, selectedLineIndex, o
                     active={selectedLineIndex === index + 1}
                     onClick={() => onLineClick(index + 1)}
                     action
-                    style={{ paddingLeft: `${line.match(/^\s*/)[0].length * 0.5}rem`, height: "50px" }}
+                    style={{
+                        paddingLeft: `${line.match(/^\s*/)[0].length * 0.5}rem`,
+                        paddingTop: `${paddingTop}px`,
+                        paddingBottom: `${paddingBottom}px`,
+                        minHeight: `${minHeight}px`,
+                    }}
                 >
                     {line}
                 </ListGroup.Item>
