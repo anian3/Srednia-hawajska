@@ -1,12 +1,15 @@
 import React, { useState, useRef, useEffect } from "react";
 import { ListGroup, Card } from "react-bootstrap";
 import CodeSmellList from "./CodeSmellList";
+import { CodeSmellData } from "../types/types";
 
 interface TextSelectorProps {
-    lines: string[];
+    quiz: string;
+    smellData: CodeSmellData;
 }
 
-const TextSelector: React.FC<TextSelectorProps> = ({ lines }) => {
+const TextSelector: React.FC<TextSelectorProps> = ({ quiz, smellData }) => {
+    const lines = quiz ? quiz.split("\n") : [];
     const [isDragging, setIsDragging] = useState(false);
     const [selectedIndices, setSelectedIndices] = useState<number[]>([]);
     const [popupPosition, setPopupPosition] = useState<{ x: number; y: number } | null>(null);
@@ -84,52 +87,59 @@ const TextSelector: React.FC<TextSelectorProps> = ({ lines }) => {
     ];
 
     return (
-        <div ref={containerRef} style={{ position: "relative" }}>
-            <ListGroup>
-                {lines.map((line, index) => (
-                    <ListGroup.Item
-                        key={index}
-                        active={selectedIndices.includes(index)}
-                        onMouseDown={(event) => handleMouseDown(index, event)}
-                        onMouseUp={(event) => handleMouseUp(event.nativeEvent)}
-                        onMouseEnter={() => handleMouseEnter(index)}
-                        onMouseLeave={handleMouseLeave}
-                        onContextMenu={(event) => handleContextMenu(index, event)}
-                        action
-                        style={{
-                            paddingLeft: `${line.match(/^\s*/)[0].length * 0.5}rem`,
-                            paddingTop: `${paddingTop}px`,
-                            paddingBottom: `${paddingBottom}px`,
-                            minHeight: `${minHeight}px`,
-                            cursor: "pointer",
-                        }}
-                    >
-                        {line}
-                    </ListGroup.Item>
-                ))}
-            </ListGroup>
-            {popupPosition && (
-                <Card
-                    ref={popupRef}
-                    style={{
-                        position: "absolute",
-                        top: `${popupPosition.y}px`,
-                        left: `${popupPosition.x}px`,
-                        zIndex: 1000,
-                        width: "200px",
-                    }}
-                >
-                    <CodeSmellList
-                        items={items}
-                        onSelected={(selectedItemId: string | number) => {
-                            setPopupPosition(null);
-                            selectedItemId === selectedItemId; // tp surpress linting errors as its not used
-                            // TODO: handle code smell selection
-                        }}
-                    />
-                </Card>
-            )}
-        </div>
+        <Card border="dark" bg="light" style={{ width: "36rem" }}>
+            <Card.Body>
+                <Card.Title>Select a Line of Code</Card.Title>
+                <div style={{ fontFamily: "monospace" }}>
+                    <div ref={containerRef} style={{ position: "relative" }}>
+                        <ListGroup>
+                            {lines.map((line, index) => (
+                                <ListGroup.Item
+                                    key={index}
+                                    active={selectedIndices.includes(index)}
+                                    onMouseDown={(event) => handleMouseDown(index, event)}
+                                    onMouseUp={(event) => handleMouseUp(event.nativeEvent)}
+                                    onMouseEnter={() => handleMouseEnter(index)}
+                                    onMouseLeave={handleMouseLeave}
+                                    onContextMenu={(event) => handleContextMenu(index, event)}
+                                    action
+                                    style={{
+                                        paddingLeft: `${line.match(/^\s*/)[0].length * 0.5}rem`,
+                                        paddingTop: `${paddingTop}px`,
+                                        paddingBottom: `${paddingBottom}px`,
+                                        minHeight: `${minHeight}px`,
+                                        cursor: "pointer",
+                                    }}
+                                >
+                                    {line}
+                                </ListGroup.Item>
+                            ))}
+                        </ListGroup>
+                        {popupPosition && (
+                            <Card
+                                ref={popupRef}
+                                style={{
+                                    position: "absolute",
+                                    top: `${popupPosition.y}px`,
+                                    left: `${popupPosition.x}px`,
+                                    zIndex: 1000,
+                                    width: "200px",
+                                }}
+                            >
+                                <CodeSmellList
+                                    items={items}
+                                    onSelected={(selectedItemId: string | number) => {
+                                        setPopupPosition(null);
+                                        selectedItemId === selectedItemId; // tp surpress linting errors as its not used
+                                        // TODO: handle code smell selection
+                                    }}
+                                />
+                            </Card>
+                        )}
+                    </div>
+                </div>
+            </Card.Body>
+        </Card>
     );
 };
 
