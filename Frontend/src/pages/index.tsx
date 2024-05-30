@@ -11,10 +11,6 @@ const MainPage = () => {
     const [selectedQuizTypeId, setSelectedQuizTypeId] = useState<string | undefined>(undefined);
     const [selectedQuizId, setSelectedQuizId] = useState<string | undefined>(undefined);
 
-    //for active quiz
-    const [smells, setSmells] = useState(undefined);
-    const [code, setCode] = useState<string | undefined>(undefined);
-
     const dummyQuizzes = [
         {
             id: "ExampleQuizzes",
