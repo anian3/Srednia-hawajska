@@ -7,14 +7,7 @@ interface TextSelectionComponentProps {
 }
 
 const TextSelectionComponent = ({ text }: TextSelectionComponentProps) => {
-    const [selectedLineIndex, setSelectedLineIndex] = useState<number | undefined>(undefined);
-
     const lines = text ? text.split("\n") : [];
-
-    const handleLineClick = (index: number) => {
-        setSelectedLineIndex(index);
-        console.log(`Selected line index: ${index}`);
-    };
 
     return (
         <Card border="dark" bg="light" style={{ width: "36rem" }}>
@@ -23,7 +16,7 @@ const TextSelectionComponent = ({ text }: TextSelectionComponentProps) => {
                 <div style={{ fontFamily: "monospace" }}>
                     {" "}
                     {}
-                    <TextSelector lines={lines} selectedLineIndex={selectedLineIndex} onLineClick={handleLineClick} />
+                    <TextSelector lines={lines} />
                 </div>
             </Card.Body>
         </Card>
