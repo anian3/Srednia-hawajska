@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import { ListGroup } from "react-bootstrap";
+import React, { useState, useRef, useEffect } from "react";
+import { ListGroup, Card } from "react-bootstrap";
+import CodeSmellList from "./CodeSmellList";
 
 interface TextSelectorProps {
     lines: string[];
@@ -8,6 +9,9 @@ interface TextSelectorProps {
 const TextSelector: React.FC<TextSelectorProps> = ({ lines }) => {
     const [isDragging, setIsDragging] = useState(false);
     const [selectedIndices, setSelectedIndices] = useState<number[]>([]);
+    const [popupPosition, setPopupPosition] = useState<{ x: number; y: number } | null>(null);
+    const popupRef = useRef<HTMLDivElement>(null);
+    const containerRef = useRef<HTMLDivElement>(null);
 
     const textSize = 16; // Assuming the text size is 16px
     const paddingTop = 10; // 10px padding top
@@ -45,34 +49,83 @@ const TextSelector: React.FC<TextSelectorProps> = ({ lines }) => {
     const handleContextMenu = (index: number, event: React.MouseEvent) => {
         event.preventDefault();
         if (selectedIndices.includes(index)) {
-            console.log(selectedIndices);
+            const containerRect = containerRef.current?.getBoundingClientRect();
+            if (containerRect) {
+                setPopupPosition({
+                    x: event.clientX - containerRect.left,
+                    y: event.clientY - containerRect.top,
+                });
+            }
         }
     };
 
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (popupRef.current && !popupRef.current.contains(event.target as Node)) {
+                setPopupPosition(null);
+            }
+        };
+
+        if (popupPosition) {
+            document.addEventListener("mousedown", handleClickOutside);
+        } else {
+            document.removeEventListener("mousedown", handleClickOutside);
+        }
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [popupPosition]);
+
+    const items = [
+        { id: "1", label: "Option 1" },
+        { id: "2", label: "Option 2" },
+        { id: "3", label: "Option 3" },
+    ];
+
     return (
-        <ListGroup>
-            {lines.map((line, index) => (
-                <ListGroup.Item
-                    key={index}
-                    active={selectedIndices.includes(index)}
-                    onMouseDown={(event) => handleMouseDown(index, event)}
-                    onMouseUp={(event) => handleMouseUp(event.nativeEvent)}
-                    onMouseEnter={() => handleMouseEnter(index)}
-                    onMouseLeave={handleMouseLeave}
-                    onContextMenu={(event) => handleContextMenu(index, event)}
-                    action
+        <div ref={containerRef} style={{ position: "relative" }}>
+            <ListGroup>
+                {lines.map((line, index) => (
+                    <ListGroup.Item
+                        key={index}
+                        active={selectedIndices.includes(index)}
+                        onMouseDown={(event) => handleMouseDown(index, event)}
+                        onMouseUp={(event) => handleMouseUp(event.nativeEvent)}
+                        onMouseEnter={() => handleMouseEnter(index)}
+                        onMouseLeave={handleMouseLeave}
+                        onContextMenu={(event) => handleContextMenu(index, event)}
+                        action
+                        style={{
+                            paddingLeft: `${line.match(/^\s*/)[0].length * 0.5}rem`,
+                            paddingTop: `${paddingTop}px`,
+                            paddingBottom: `${paddingBottom}px`,
+                            minHeight: `${minHeight}px`,
+                            cursor: "pointer",
+                        }}
+                    >
+                        {line}
+                    </ListGroup.Item>
+                ))}
+            </ListGroup>
+            {popupPosition && (
+                <Card
+                    ref={popupRef}
                     style={{
-                        paddingLeft: `${line.match(/^\s*/)[0].length * 0.5}rem`,
-                        paddingTop: `${paddingTop}px`,
-                        paddingBottom: `${paddingBottom}px`,
-                        minHeight: `${minHeight}px`,
-                        cursor: "pointer",
+                        position: "absolute",
+                        top: `${popupPosition.y}px`,
+                        left: `${popupPosition.x}px`,
+                        zIndex: 1000,
+                        width: "200px",
                     }}
                 >
-                    {line}
-                </ListGroup.Item>
-            ))}
-        </ListGroup>
+                    <CodeSmellList items={items} onSelected={(selectedItemId: string | number ) => {
+                        setPopupPosition(null);
+                        // TODO: handle code smell selection
+                    }} />
+                </Card>
+            )}
+        </div>
     );
 };
 

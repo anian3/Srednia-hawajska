@@ -30,9 +30,6 @@ const QuizPage = ({ selectedQuiz }: QuizPageProps) => {
     return (
         <div className="d-flex">
             <div style={{ flex: 1, padding: "1rem" }}>
-                <div>QuizPage</div>
-                <div>{selectedQuiz}</div>
-                <CodeSmellList items={items} />
                 <TextSelectionComponent text={selectedQuiz} />
                 {!submitted && <button onClick={handleQuizSubmit}>Submit</button>}
             </div>
