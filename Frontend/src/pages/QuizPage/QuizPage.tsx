@@ -51,7 +51,7 @@ const QuizPage = ({ selectedQuizConfigId, quizId }: QuizPageProps) => {
 
     return (
         <div className="d-flex">
-            {quiz !== undefined && codeSmellData !== undefined} ? (
+            {quiz !== undefined && codeSmellData !== undefined && (
             <>
                 <div style={{ flex: 6, padding: "1rem" }}>
                     <TextSelector quiz={quiz} smellData={codeSmellData} />
@@ -66,7 +66,7 @@ const QuizPage = ({ selectedQuizConfigId, quizId }: QuizPageProps) => {
                     {submitted && <QuizResult score={score} mistakes={mistakes} />}
                 </div>
             </>
-            )
+            )}
         </div>
     );
 };
