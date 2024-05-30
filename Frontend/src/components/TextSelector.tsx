@@ -123,6 +123,7 @@ const TextSelector: React.FC<TextSelectorProps> = ({ lines }) => {
                         items={items}
                         onSelected={(selectedItemId: string | number) => {
                             setPopupPosition(null);
+                            selectedItemId === selectedItemId; // tp surpress linting errors as its not used
                             // TODO: handle code smell selection
                         }}
                     />

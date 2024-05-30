@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import CodeSmellList from "../../components/CodeSmellList";
 import TextSelectionComponent from "../../components/TextSelectionComponent";
 import QuizResult from "../../components/QuizResult";
 
@@ -11,13 +10,7 @@ const QuizPage = ({ selectedQuiz }: QuizPageProps) => {
     const [submitted, setSubmitted] = useState(false);
     const [score, setScore] = useState<number>(0);
     const [mistakes, setMistakes] = useState<string[]>([]);
-
-    const items = [
-        { id: "1", label: "Option 1" },
-        { id: "2", label: "Option 2" },
-        { id: "3", label: "Option 3" },
-    ];
-
+    
     const handleQuizSubmit = () => {
         const calculatedScore = 8;
         const quizMistakes = ["Mistake 1", "Mistake 2", "Mistake 3"];
