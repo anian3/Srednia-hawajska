@@ -127,11 +127,12 @@ const TextSelector: React.FC<TextSelectorProps> = ({ quiz, smellData }) => {
                                 }}
                             >
                                 <CodeSmellList
-                                    items={items}
-                                    onSelected={(selectedItemId: string | number) => {
-                                        setPopupPosition(null);
-                                        selectedItemId === selectedItemId; // tp surpress linting errors as its not used
+                                    categories={smellData.categories}
+                                    onSelected={(category: string | number) => {
+                                        setPopupPosition(null); // hide popup
+                                        category === category; // tp surpress linting errors as its not used
                                         // TODO: handle code smell selection
+                                        console.log("Selected code smell: ", category);
                                     }}
                                 />
                             </Card>
