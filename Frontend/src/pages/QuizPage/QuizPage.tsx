@@ -49,12 +49,9 @@ const QuizPage = ({ selectedQuizConfigId, quizId }: QuizPageProps) => {
         return `${minutes}:${remainingSeconds < 10 ? "0" : ""}${remainingSeconds}`;
     };
 
-    // Check if the data is available
-    const isDataFetched = quiz !== undefined && codeSmellData !== undefined;
-
     return (
         <div className="d-flex">
-            {quiz !== undefined && codeSmellData !== undefined} ?{" "}
+            {quiz !== undefined && codeSmellData !== undefined} ? (
             <>
                 <div style={{ flex: 6, padding: "1rem" }}>
                     <TextSelector quiz={quiz} smellData={codeSmellData} />
@@ -69,6 +66,7 @@ const QuizPage = ({ selectedQuizConfigId, quizId }: QuizPageProps) => {
                     {submitted && <QuizResult score={score} mistakes={mistakes} />}
                 </div>
             </>
+            )
         </div>
     );
 };
