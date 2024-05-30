@@ -119,10 +119,13 @@ const TextSelector: React.FC<TextSelectorProps> = ({ lines }) => {
                         width: "200px",
                     }}
                 >
-                    <CodeSmellList items={items} onSelected={(selectedItemId: string | number ) => {
-                        setPopupPosition(null);
-                        // TODO: handle code smell selection
-                    }} />
+                    <CodeSmellList
+                        items={items}
+                        onSelected={(selectedItemId: string | number) => {
+                            setPopupPosition(null);
+                            // TODO: handle code smell selection
+                        }}
+                    />
                 </Card>
             )}
         </div>
