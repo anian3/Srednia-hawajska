@@ -52,20 +52,20 @@ const QuizPage = ({ selectedQuizConfigId, quizId }: QuizPageProps) => {
     return (
         <div className="d-flex">
             {quiz !== undefined && codeSmellData !== undefined && (
-            <>
-                <div style={{ flex: 6, padding: "1rem" }}>
-                    <TextSelector quiz={quiz} smellData={codeSmellData} />
-                    {!submitted && <button onClick={handleQuizSubmit}>Submit</button>}
-                </div>
-                <div style={{ flex: 1, padding: "1rem" }}>
-                    <Card border="dark" bg="light" className="mb-3" style={{ width: "16rem" }}>
-                        <Card.Body>
-                            <Card.Title>Time: {formatTime(elapsedTime)}</Card.Title>
-                        </Card.Body>
-                    </Card>
-                    {submitted && <QuizResult score={score} mistakes={mistakes} />}
-                </div>
-            </>
+                <>
+                    <div style={{ flex: 6, padding: "1rem" }}>
+                        <TextSelector quiz={quiz} smellData={codeSmellData} />
+                        {!submitted && <button onClick={handleQuizSubmit}>Submit</button>}
+                    </div>
+                    <div style={{ flex: 1, padding: "1rem" }}>
+                        <Card border="dark" bg="light" className="mb-3" style={{ width: "16rem" }}>
+                            <Card.Body>
+                                <Card.Title>Time: {formatTime(elapsedTime)}</Card.Title>
+                            </Card.Body>
+                        </Card>
+                        {submitted && <QuizResult score={score} mistakes={mistakes} />}
+                    </div>
+                </>
             )}
         </div>
     );
