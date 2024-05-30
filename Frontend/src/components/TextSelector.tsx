@@ -38,14 +38,14 @@ const TextSelector: React.FC<TextSelectorProps> = ({ lines }) => {
 
     const handleMouseLeave = () => {
         if (isDragging) {
-            document.addEventListener('mouseup', handleMouseUp as EventListener, { once: true });
+            document.addEventListener("mouseup", handleMouseUp as EventListener, { once: true });
         }
     };
 
     const handleContextMenu = (index: number, event: React.MouseEvent) => {
         event.preventDefault();
         if (selectedIndices.includes(index)) {
-            console.log(selectedIndices)
+            console.log(selectedIndices);
         }
     };
 
@@ -66,7 +66,7 @@ const TextSelector: React.FC<TextSelectorProps> = ({ lines }) => {
                         paddingTop: `${paddingTop}px`,
                         paddingBottom: `${paddingBottom}px`,
                         minHeight: `${minHeight}px`,
-                        cursor: 'pointer'
+                        cursor: "pointer",
                     }}
                 >
                     {line}
