@@ -80,12 +80,6 @@ const TextSelector: React.FC<TextSelectorProps> = ({ quiz, smellData }) => {
         };
     }, [popupPosition]);
 
-    const items = [
-        { id: "1", label: "Option 1" },
-        { id: "2", label: "Option 2" },
-        { id: "3", label: "Option 3" },
-    ];
-
     return (
         <Card border="dark" bg="light" style={{ width: "36rem" }}>
             <Card.Body>
