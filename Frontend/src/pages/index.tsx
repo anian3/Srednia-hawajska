@@ -11,10 +11,6 @@ const MainPage = () => {
     const [selectedQuizTypeId, setSelectedQuizTypeId] = useState<string | undefined>(undefined);
     const [selectedQuizId, setSelectedQuizId] = useState<string | undefined>(undefined);
 
-    //for active quiz
-    const [smells, setSmells] = useState(undefined);
-    const [code, setCode] = useState<string | undefined>(undefined);
-
     const dummyQuizzes = [
         {
             id: "ExampleQuizzes",
@@ -26,17 +22,6 @@ const MainPage = () => {
             ],
         },
     ];
-
-    const fetchQuizfile = (quiz: string, path: string) => {
-        const smellsURL = `http://localhost:8080/apiv1/quizfile?quiz=${encodeURIComponent(quiz)}&path=${encodeURIComponent(path + ".json")}`;
-        const codeURL = `http://localhost:8080/apiv1/codefile?quiz=${encodeURIComponent(quiz)}&path=${encodeURIComponent(path + ".txt")}`;
-        fetch(smellsURL)
-            .then((rs) => rs.json())
-            .then((json) => setSmells(json));
-        fetch(codeURL)
-            .then((rs) => rs.text())
-            .then((txt) => setCode(txt));
-    };
 
     const playerName = "Marek";
 
@@ -66,7 +51,6 @@ const MainPage = () => {
                         quizzes={selectedQuizConfig.quizzes}
                         playerName={playerName}
                         onQuizChosen={(quizId: string) => {
-                            fetchQuizfile(selectedQuizConfig.id, quizId);
                             setSelectedQuizId(quizId);
                             setCurrentPage(PageType.QUIZ);
                         }}
@@ -76,9 +60,11 @@ const MainPage = () => {
         }
 
         case PageType.QUIZ: {
+            const selectedQuizConfig = dummyQuizzes.find((quizConfig) => quizConfig.id === selectedQuizTypeId);
+            if (!selectedQuizConfig) throw Error("Quiz was not chosen!");
             return (
                 <>
-                    <QuizPage selectedQuiz={code}></QuizPage>
+                    <QuizPage selectedQuizConfigId={selectedQuizConfig.id} quizId={selectedQuizId}></QuizPage>
                 </>
             );
         }

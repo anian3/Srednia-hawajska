@@ -11,7 +11,7 @@ interface ListItem {
 interface InteractiveListProps {
     items: ListItem[];
     selectedItemId: string | number | undefined;
-    onItemClick: (item: ListItem["id"]) => void;
+    onItemClick: (item: ListItem) => void;
     variant?: ListStyleVariant;
 }
 
@@ -22,7 +22,7 @@ function InteractiveList({ items, selectedItemId, onItemClick, variant = "primar
                 <ListGroup.Item
                     key={item.id}
                     active={selectedItemId === item.id}
-                    onClick={() => onItemClick(item.id)}
+                    onClick={() => onItemClick(item)}
                     variant={variant}
                     action
                 >
