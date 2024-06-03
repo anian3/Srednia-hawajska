@@ -1,5 +1,6 @@
 FROM gradle:jdk17-jammy AS build
 COPY --chown=gradle:gradle . /home/gradle/src
+COPY . /quizzes 
 WORKDIR /home/gradle/src
 RUN gradle bootJar --no-daemon
 
