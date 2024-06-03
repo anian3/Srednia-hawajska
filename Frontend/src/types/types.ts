@@ -4,3 +4,8 @@ export enum PageType {
     QUIZ = "quiz",
     RESULTS = "results",
 }
+
+export interface CodeSmellData {
+    categories: string[];
+    codeSmells: { linebegin: number; lineend: number; category: string }[];
+}
