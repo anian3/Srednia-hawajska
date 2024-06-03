@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import QuizResult from "../../components/QuizResult";
 import { Card } from "react-bootstrap";
 import { CodeSmellData } from "../../types/types";
-import { fetchQuizData } from "./utils";
+import { fetchQuizData } from "../../components/utils";
 import TextSelector from "../../components/TextSelector";
 
 interface QuizPageProps {

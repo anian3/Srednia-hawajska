@@ -1,4 +1,4 @@
-import { CodeSmellData } from "../../types/types";
+import { CodeSmellData } from "../types/types";
 
 export async function fetchQuizData(
     quizName: string,
