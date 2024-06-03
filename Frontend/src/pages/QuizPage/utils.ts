@@ -4,8 +4,8 @@ export async function fetchQuizData(
     quizName: string,
     path: string
 ): Promise<{ quiz: string; codeSmellData: CodeSmellData } | null> {
-    const smellsURL = `http://localhost:8080/apiv1/quizfile?quiz=${encodeURIComponent(quizName)}&path=${encodeURIComponent(path + ".json")}`;
-    const codeURL = `http://localhost:8080/apiv1/codefile?quiz=${encodeURIComponent(quizName)}&path=${encodeURIComponent(path + ".txt")}`;
+    const smellsURL = `https://srednia-hawajska.onrender.com/apiv1/quizfile?quiz=${encodeURIComponent(quizName)}&path=${encodeURIComponent(path + ".json")}`;
+    const codeURL = `https://srednia-hawajska.onrender.com/apiv1/codefile?quiz=${encodeURIComponent(quizName)}&path=${encodeURIComponent(path + ".txt")}`;
 
     try {
         // Fetch code smell data
