@@ -37,7 +37,7 @@ function QuizSelectionPage({ selectedQuizType, quizzes, playerName, onQuizChosen
                         {selectedQuizType}
                     </ListGroup.Item>
 
-                    {quizzes.map((item) => (
+                    {quizzes?.map((item) => (
                         <ListGroup.Item
                             key={item.id}
                             onClick={() => onQuizChosen(item.id)}
