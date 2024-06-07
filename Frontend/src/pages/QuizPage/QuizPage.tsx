@@ -13,11 +13,15 @@ interface QuizPageProps {
 const QuizPage = ({ selectedQuizConfigId, quizId }: QuizPageProps) => {
     const [quiz, setQuiz] = useState<string | undefined>(undefined);
     const [codeSmellData, setCodeSmellData] = useState<CodeSmellData | undefined>(undefined);
+    const [language, setLanguage] = useState<string | undefined>(undefined);
 
-    fetchQuizData(selectedQuizConfigId, quizId).then(({ quiz: fetchedQuiz, codeSmellData: fetchedCodeSmellData }) => {
-        setQuiz(fetchedQuiz);
-        setCodeSmellData(fetchedCodeSmellData);
-    });
+    fetchQuizData(selectedQuizConfigId, quizId).then(
+        ({ quiz: fetchedQuiz, codeSmellData: fetchedCodeSmellData, language: fetchedLanguage }) => {
+            setQuiz(fetchedQuiz);
+            setCodeSmellData(fetchedCodeSmellData);
+            setLanguage(fetchedLanguage);
+        }
+    );
 
     const [submitted, setSubmitted] = useState(false);
     const [score, setScore] = useState<number>(0);
@@ -54,7 +58,7 @@ const QuizPage = ({ selectedQuizConfigId, quizId }: QuizPageProps) => {
             {quiz !== undefined && codeSmellData !== undefined && (
                 <>
                     <div style={{ flex: 6, padding: "1rem" }}>
-                        <TextSelector quiz={quiz} smellData={codeSmellData} />
+                        <TextSelector quiz={quiz} smellData={codeSmellData} language={language} />
                         {!submitted && <button onClick={handleQuizSubmit}>Submit</button>}
                     </div>
                     <div style={{ flex: 1, padding: "1rem" }}>

@@ -13,7 +13,12 @@ export async function fetchQuizData(
         if (!codeSmellResponse.ok) {
             throw new Error(`Failed to fetch code smell data: ${codeSmellResponse.statusText}`);
         }
-        const codeSmellData = (await codeSmellResponse.json()) as CodeSmellData;
+        const codeSmellJson = await codeSmellResponse.json();
+        const codeSmellData: CodeSmellData = {
+            categories: codeSmellJson.categories,
+            codeSmells: codeSmellJson.codeSmells,
+        };
+        const language = codeSmellJson.language;
 
         // Fetch quiz data
         const quizResponse = await fetch(codeURL);
@@ -22,7 +27,7 @@ export async function fetchQuizData(
         }
         const quiz = await quizResponse.text();
 
-        return { quiz, codeSmellData };
+        return { quiz, codeSmellData, language };
     } catch (error) {
         console.error("Error fetching quiz data:", error);
         return null;
