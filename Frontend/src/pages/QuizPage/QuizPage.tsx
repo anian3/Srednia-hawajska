@@ -15,13 +15,15 @@ const QuizPage = ({ selectedQuizConfigId, quizId }: QuizPageProps) => {
     const [codeSmellData, setCodeSmellData] = useState<CodeSmellData | undefined>(undefined);
     const [language, setLanguage] = useState<string | undefined>(undefined);
 
-    fetchQuizData(selectedQuizConfigId, quizId).then(
-        ({ quiz: fetchedQuiz, codeSmellData: fetchedCodeSmellData, language: fetchedLanguage }) => {
-            setQuiz(fetchedQuiz);
-            setCodeSmellData(fetchedCodeSmellData);
-            setLanguage(fetchedLanguage);
-        }
-    );
+    useEffect(() => {
+        fetchQuizData(selectedQuizConfigId, quizId).then(
+            ({ quiz: fetchedQuiz, codeSmellData: fetchedCodeSmellData, language: fetchedLanguage }) => {
+                setQuiz(fetchedQuiz);
+                setCodeSmellData(fetchedCodeSmellData);
+                setLanguage(fetchedLanguage);
+            }
+        );
+    }, [selectedQuizConfigId, quizId]);
 
     const [submitted, setSubmitted] = useState(false);
     const [score, setScore] = useState<number>(0);
