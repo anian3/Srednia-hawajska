@@ -4,7 +4,7 @@ import { Card } from "react-bootstrap";
 import { CodeSmellData } from "../../types/types";
 import { fetchQuizData } from "./utils";
 import TextSelector from "../../components/TextSelector";
-import { FaUndo } from 'react-icons/fa';
+import { FaUndo } from "react-icons/fa";
 
 interface QuizPageProps {
     selectedQuizConfigId: string;
@@ -68,22 +68,32 @@ const QuizPage = ({ selectedQuizConfigId, quizId, onBack }: QuizPageProps) => {
                         {submitted && <QuizResult score={score} mistakes={mistakes} />}
                     </div>
                     {submitted && (
-                    <div style={{ display: "flex", justifyContent: "center", alignItems: "center", position: "absolute", top: "10px", left: "50%", transform: "translateX(-50%)" }}>
-                        <button
-                            onClick={onBack}
+                        <div
                             style={{
-                                backgroundColor: "#ffffff",
-                                borderRadius: "50%",
-                                width: "50px",
-                                height: "50px",
-                                border: "2px solid #000000",
-                                cursor: "pointer",
+                                display: "flex",
+                                justifyContent: "center",
+                                alignItems: "center",
+                                position: "absolute",
+                                top: "10px",
+                                left: "50%",
+                                transform: "translateX(-50%)",
                             }}
                         >
-                            <FaUndo size={24} color="#000000" />
-                        </button>
-                    </div>
-                )}
+                            <button
+                                onClick={onBack}
+                                style={{
+                                    backgroundColor: "#ffffff",
+                                    borderRadius: "50%",
+                                    width: "50px",
+                                    height: "50px",
+                                    border: "2px solid #000000",
+                                    cursor: "pointer",
+                                }}
+                            >
+                                <FaUndo size={24} color="#000000" />
+                            </button>
+                        </div>
+                    )}
                 </>
             )}
         </div>
