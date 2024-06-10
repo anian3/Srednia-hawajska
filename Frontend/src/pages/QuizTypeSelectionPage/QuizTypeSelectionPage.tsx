@@ -27,7 +27,7 @@ function QuizTypeSelectionPage({ quizTypes, playerName, onQuizChosen }: QuizType
             </Card.Header>
             <Card.Body>
                 <ListGroup style={{ maxWidth: "60%", margin: "0 auto", overflowY: "auto" }}>
-                    {quizTypes.map((item) => (
+                    {quizTypes?.map((item) => (
                         <ListGroup.Item
                             key={item.id}
                             onClick={() => onQuizChosen(item.id)}
