@@ -48,5 +48,14 @@ cd .../Backend/rest-service
 - Po zatwierdzeniu rozwiązania użytkownik otrzymuje informacje o skuteczności.
 - Administrator może zarządzać quizami, dodawać, usuwać, edytować.
 
+## Definition of done
+Zadanie może zostać zamknięte kiedy:
+-Kod spełniający wymagania akceptacyjne jest na branchu na repozytorium
+-Co najmniej dwóch developerów zrobi review i zatwierdzi zmiany
+-Branch, na którym znajdują się zmiany, zostanie zmergowany
+-Na jirze zadanie zostanie oznaczone jako Done
+-Wszystkie subtaski user story są zakończone
+Żeby zakończyć user story, wszystkie jego subtaski muszą również być zakończone.
+
 
 
