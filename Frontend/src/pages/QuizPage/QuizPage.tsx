@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import QuizResult from "../../components/QuizResult";
 import { Card } from "react-bootstrap";
-import { CodeSmellData } from "../../types/types";
+import { CodeSmell, CodeSmellData } from "../../types/types";
 import { fetchQuizData } from "./utils";
 import TextSelector from "../../components/TextSelector";
 import { FaUndo } from "react-icons/fa";
+import { checkQuiz } from "../../helpers/checkQuiz";
 
 interface QuizPageProps {
     selectedQuizConfigId: string;
@@ -16,6 +17,7 @@ const QuizPage = ({ selectedQuizConfigId, quizId, onBack }: QuizPageProps) => {
     const [quiz, setQuiz] = useState<string | undefined>(undefined);
     const [codeSmellData, setCodeSmellData] = useState<CodeSmellData | undefined>(undefined);
     const [language, setLanguage] = useState<string | undefined>(undefined);
+    const [maxScore, setMaxScore] = useState<number>(0);
 
     useEffect(() => {
         fetchQuizData(selectedQuizConfigId, quizId).then(
@@ -23,9 +25,17 @@ const QuizPage = ({ selectedQuizConfigId, quizId, onBack }: QuizPageProps) => {
                 setQuiz(fetchedQuiz);
                 setCodeSmellData(fetchedCodeSmellData);
                 setLanguage(fetchedLanguage);
+                setMaxScore(fetchedCodeSmellData.codeSmells.length);
             }
         );
     }, [selectedQuizConfigId, quizId]);
+
+    const [marked,setMarked] = useState<CodeSmell[]>([]);
+    
+    const addSmell = (smell : CodeSmell) => {
+        setMarked([smell,...marked]);
+        return;
+    }
 
     const [submitted, setSubmitted] = useState(false);
     const [score, setScore] = useState<number>(0);
@@ -43,11 +53,14 @@ const QuizPage = ({ selectedQuizConfigId, quizId, onBack }: QuizPageProps) => {
     }, [submitted]);
 
     const handleQuizSubmit = () => {
-        const calculatedScore = 8;
-        const quizMistakes = ["Mistake 1", "Mistake 2", "Mistake 3"];
-
-        setScore(calculatedScore);
-        setMistakes(quizMistakes);
+        const { correct, missed, extra, misclassified } = checkQuiz(marked,codeSmellData.codeSmells);
+        
+        const missedMapped = missed.map(smell => `Missed:${smell.linebegin}-${smell.lineend},${smell.category}`);
+        const extraMapped = extra.map(smell => `Extra:${smell.linebegin}-${smell.lineend},${smell.category}`)
+        const misclassifiedMapped = misclassified.map(smell => `Misclassified:${smell.linebegin}-${smell.lineend},${smell.category}`)
+        
+        setScore(Math.max(0,correct.length - missed.length - extra.length - misclassified.length));
+        setMistakes([...extraMapped, ...missedMapped, ...misclassifiedMapped]);
         setSubmitted(true);
     };
 
@@ -62,7 +75,7 @@ const QuizPage = ({ selectedQuizConfigId, quizId, onBack }: QuizPageProps) => {
             {quiz !== undefined && codeSmellData !== undefined && (
                 <>
                     <div style={{ flex: 6, padding: "1rem" }}>
-                        <TextSelector quiz={quiz} smellData={codeSmellData} language={language} />
+                        <TextSelector quiz={quiz} smellData={codeSmellData} language={language} onSelect={addSmell}/>
                         {!submitted && <button onClick={handleQuizSubmit}>Submit</button>}
                     </div>
                     <div style={{ flex: 1, padding: "1rem" }}>
@@ -71,7 +84,7 @@ const QuizPage = ({ selectedQuizConfigId, quizId, onBack }: QuizPageProps) => {
                                 <Card.Title>Time: {formatTime(elapsedTime)}</Card.Title>
                             </Card.Body>
                         </Card>
-                        {submitted && <QuizResult score={score} mistakes={mistakes} />}
+                        {submitted && <QuizResult score={score} maxScore={maxScore} mistakes={mistakes} />}
                     </div>
                     {submitted && (
                         <div
