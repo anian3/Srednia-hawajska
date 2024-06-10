@@ -78,34 +78,37 @@ const QuizPage = ({ selectedQuizConfigId, quizId, onBack }: QuizPageProps) => {
                 <>
                     <div style={{ flex: 6, padding: "1rem" }}>
                         <TextSelector quiz={quiz} smellData={codeSmellData} language={language} onSelect={addSmell} />
-                        {!submitted && 
-                        <button
-                        style={{
-                            backgroundColor: "#008CBA", // Blue background
-                            border: "2px solid #008CBA", // Same blue border
-                            color: "white", // White text
-                            padding: "10px 20px", // Padding for button size
-                            textAlign: "center", // Centered text
-                            textDecoration: "none", // No underline
-                            display: "inline-block", // Inline-block for better control
-                            fontSize: "16px", // Font size
-                            margin: "10px 2px", // Margin for spacing
-                            cursor: "pointer", // Pointer cursor on hover
-                            borderRadius: "12px", // Rounded corners
-                            transition: "background-color 0.3s ease", // Smooth background transition
-                        }}
-                        onMouseOver={(e) => (e.currentTarget.style.backgroundColor = "#007BB5")}
-                        onMouseOut={(e) => (e.currentTarget.style.backgroundColor = "#008CBA")}
-                        onMouseDown={(e) => {
-                            e.currentTarget.style.backgroundColor = "#005F73";
-                            e.currentTarget.style.border = "2px solid #005F73";
-                        }}
-                        onMouseUp={(e) => {
-                            e.currentTarget.style.backgroundColor = "#007BB5";
-                            e.currentTarget.style.border = "2px solid #008CBA";
-                        }}
-                        onClick={handleQuizSubmit}>Submit</button>}
-
+                        {!submitted && (
+                            <button
+                                style={{
+                                    backgroundColor: "#008CBA", // Blue background
+                                    border: "2px solid #008CBA", // Same blue border
+                                    color: "white", // White text
+                                    padding: "10px 20px", // Padding for button size
+                                    textAlign: "center", // Centered text
+                                    textDecoration: "none", // No underline
+                                    display: "inline-block", // Inline-block for better control
+                                    fontSize: "16px", // Font size
+                                    margin: "10px 2px", // Margin for spacing
+                                    cursor: "pointer", // Pointer cursor on hover
+                                    borderRadius: "12px", // Rounded corners
+                                    transition: "background-color 0.3s ease", // Smooth background transition
+                                }}
+                                onMouseOver={(e) => (e.currentTarget.style.backgroundColor = "#007BB5")}
+                                onMouseOut={(e) => (e.currentTarget.style.backgroundColor = "#008CBA")}
+                                onMouseDown={(e) => {
+                                    e.currentTarget.style.backgroundColor = "#005F73";
+                                    e.currentTarget.style.border = "2px solid #005F73";
+                                }}
+                                onMouseUp={(e) => {
+                                    e.currentTarget.style.backgroundColor = "#007BB5";
+                                    e.currentTarget.style.border = "2px solid #008CBA";
+                                }}
+                                onClick={handleQuizSubmit}
+                            >
+                                Submit
+                            </button>
+                        )}
                     </div>
                     <div style={{ flex: 1, padding: "1rem" }}>
                         <Card border="dark" bg="light" className="mb-3" style={{ width: "16rem" }}>
