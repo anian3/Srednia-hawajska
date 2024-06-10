@@ -63,9 +63,11 @@ const MainPage = () => {
             const selectedQuizConfig = dummyQuizzes.find((quizConfig) => quizConfig.id === selectedQuizTypeId);
             if (!selectedQuizConfig) throw Error("Quiz was not chosen!");
             return (
-                <>
-                    <QuizPage selectedQuizConfigId={selectedQuizConfig.id} quizId={selectedQuizId}></QuizPage>
-                </>
+                <QuizPage
+                    selectedQuizConfigId={selectedQuizConfig.id}
+                    quizId={selectedQuizId}
+                    onBack={() => setCurrentPage(PageType.QUIZ_SELECTION)} // Pass the onBack function here
+                />
             );
         }
 
