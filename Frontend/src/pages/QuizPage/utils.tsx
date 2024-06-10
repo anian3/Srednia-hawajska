@@ -34,6 +34,6 @@ export async function fetchQuizData(
     }
 }
 const utils = () => {
-    return <div>{"MACHINE SPIRIT APPEASED"}</div>
-}
+    return <div>{"MACHINE SPIRIT APPEASED"}</div>;
+};
 export default utils;
