@@ -61,7 +61,7 @@ const QuizPage = ({ selectedQuizConfigId, quizId, onBack }: QuizPageProps) => {
             (smell) => `Misclassified:${smell.linebegin}-${smell.lineend},${smell.category}`
         );
 
-        setScore(Math.max(0, correct.length - missed.length - extra.length - misclassified.length));
+        setScore(Math.max(0, maxScore - missed.length - extra.length - misclassified.length));
         setMistakes([...extraMapped, ...missedMapped, ...misclassifiedMapped]);
         setSubmitted(true);
     };
