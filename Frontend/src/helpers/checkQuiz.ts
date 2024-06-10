@@ -27,7 +27,7 @@ export function checkQuiz(userInput: CodeSmell[], data: QuizData): CheckQuizResu
             if (userSmell && userSmell.category === actualSmell.category) {
                 correct.push(actualSmell);
             } else {
-                misclassified.push(userSmell!);
+                misclassified.push(userSmell);
             }
         } else {
             missed.push(actualSmell);
