@@ -11,33 +11,14 @@ const MainPage = () => {
     const [selectedQuizTypeId, setSelectedQuizTypeId] = useState<string | undefined>(undefined);
     const [selectedQuizId, setSelectedQuizId] = useState<string | undefined>(undefined);
 
-    // TODO: fetch these
     const dummyQuizzes = [
         {
-            id: "1",
-            name: "Type 1",
+            id: "ExampleQuizzes",
             quizzes: [
-                { id: "T1 Q1", name: "T1 Quiz 1" },
-                { id: "T1 Q2", name: "T1 Quiz 2" },
-                { id: "T1 Q3", name: "T1 Quiz 3" },
-            ],
-        },
-        {
-            id: "2",
-            name: "Type 2",
-            quizzes: [
-                { id: "T2 Q1", name: "T2 Quiz 1" },
-                { id: "T2 Q2", name: "T2 Quiz 2" },
-                { id: "T2 Q3", name: "T2 Quiz 3" },
-            ],
-        },
-        {
-            id: "3",
-            name: "Type 3",
-            quizzes: [
-                { id: "T3 Q1", name: "T3 uiz 1" },
-                { id: "T3 Q2", name: "T3 uiz 2" },
-                { id: "T3 Q3", name: "T3 uiz 3" },
+                {
+                    id: "cpp/file1cpp",
+                    name: "C++ quiz 1",
+                },
             ],
         },
     ];
@@ -66,7 +47,7 @@ const MainPage = () => {
             return (
                 <>
                     <QuizSelectionPage
-                        selectedQuizType={selectedQuizConfig.name}
+                        selectedQuizType={selectedQuizConfig.id}
                         quizzes={selectedQuizConfig.quizzes}
                         playerName={playerName}
                         onQuizChosen={(quizId: string) => {
@@ -79,11 +60,14 @@ const MainPage = () => {
         }
 
         case PageType.QUIZ: {
-            const selectedQuiz = "Selected quiz with" + selectedQuizId;
+            const selectedQuizConfig = dummyQuizzes.find((quizConfig) => quizConfig.id === selectedQuizTypeId);
+            if (!selectedQuizConfig) throw Error("Quiz was not chosen!");
             return (
-                <>
-                    <QuizPage selectedQuiz={selectedQuiz}></QuizPage>
-                </>
+                <QuizPage
+                    selectedQuizConfigId={selectedQuizConfig.id}
+                    quizId={selectedQuizId}
+                    onBack={() => setCurrentPage(PageType.QUIZ_SELECTION)} // Pass the onBack function here
+                />
             );
         }
 

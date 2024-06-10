@@ -3,7 +3,7 @@ import { Card, ListGroup } from "react-bootstrap";
 import { Settings } from "../../config/settings";
 
 interface QuizType {
-    name: string;
+    name?: string;
     id: string;
 }
 
@@ -36,7 +36,7 @@ function QuizTypeSelectionPage({ quizTypes, playerName, onQuizChosen }: QuizType
                             className="text-center"
                             style={{ fontSize: "20px", padding: "15px" }}
                         >
-                            {item.name}
+                            {item.name ?? item.id}
                         </ListGroup.Item>
                     ))}
                 </ListGroup>

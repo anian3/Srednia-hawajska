@@ -25,3 +25,8 @@ export type CheckQuizResult = {
     extra: CodeSmell[];
     misclassified: CodeSmell[];
 };
+
+export interface CodeSmellData {
+    categories: string[];
+    codeSmells: { linebegin: number; lineend: number; category: string }[];
+}
