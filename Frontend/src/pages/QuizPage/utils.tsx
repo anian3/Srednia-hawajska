@@ -33,3 +33,7 @@ export async function fetchQuizData(
         return null;
     }
 }
+const utils = () => {
+    return <div>{"MACHINE SPIRIT APPEASED"}</div>
+}
+export default utils;
