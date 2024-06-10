@@ -30,12 +30,12 @@ const QuizPage = ({ selectedQuizConfigId, quizId, onBack }: QuizPageProps) => {
         );
     }, [selectedQuizConfigId, quizId]);
 
-    const [marked,setMarked] = useState<CodeSmell[]>([]);
-    
-    const addSmell = (smell : CodeSmell) => {
-        setMarked([smell,...marked]);
+    const [marked, setMarked] = useState<CodeSmell[]>([]);
+
+    const addSmell = (smell: CodeSmell) => {
+        setMarked([smell, ...marked]);
         return;
-    }
+    };
 
     const [submitted, setSubmitted] = useState(false);
     const [score, setScore] = useState<number>(0);
@@ -53,13 +53,15 @@ const QuizPage = ({ selectedQuizConfigId, quizId, onBack }: QuizPageProps) => {
     }, [submitted]);
 
     const handleQuizSubmit = () => {
-        const { correct, missed, extra, misclassified } = checkQuiz(marked,codeSmellData.codeSmells);
-        
-        const missedMapped = missed.map(smell => `Missed:${smell.linebegin}-${smell.lineend},${smell.category}`);
-        const extraMapped = extra.map(smell => `Extra:${smell.linebegin}-${smell.lineend},${smell.category}`)
-        const misclassifiedMapped = misclassified.map(smell => `Misclassified:${smell.linebegin}-${smell.lineend},${smell.category}`)
-        
-        setScore(Math.max(0,correct.length - missed.length - extra.length - misclassified.length));
+        const { correct, missed, extra, misclassified } = checkQuiz(marked, codeSmellData.codeSmells);
+
+        const missedMapped = missed.map((smell) => `Missed:${smell.linebegin}-${smell.lineend},${smell.category}`);
+        const extraMapped = extra.map((smell) => `Extra:${smell.linebegin}-${smell.lineend},${smell.category}`);
+        const misclassifiedMapped = misclassified.map(
+            (smell) => `Misclassified:${smell.linebegin}-${smell.lineend},${smell.category}`
+        );
+
+        setScore(Math.max(0, correct.length - missed.length - extra.length - misclassified.length));
         setMistakes([...extraMapped, ...missedMapped, ...misclassifiedMapped]);
         setSubmitted(true);
     };
@@ -75,7 +77,7 @@ const QuizPage = ({ selectedQuizConfigId, quizId, onBack }: QuizPageProps) => {
             {quiz !== undefined && codeSmellData !== undefined && (
                 <>
                     <div style={{ flex: 6, padding: "1rem" }}>
-                        <TextSelector quiz={quiz} smellData={codeSmellData} language={language} onSelect={addSmell}/>
+                        <TextSelector quiz={quiz} smellData={codeSmellData} language={language} onSelect={addSmell} />
                         {!submitted && <button onClick={handleQuizSubmit}>Submit</button>}
                     </div>
                     <div style={{ flex: 1, padding: "1rem" }}>

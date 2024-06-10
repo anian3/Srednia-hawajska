@@ -3,7 +3,7 @@ import { CodeSmellData } from "../../types/types";
 export async function fetchQuizData(
     quizName: string,
     path: string
-): Promise<{ quiz: string, codeSmellData: CodeSmellData, language : string} | null> {
+): Promise<{ quiz: string; codeSmellData: CodeSmellData; language: string } | null> {
     const smellsURL = `https://srednia-hawajska.onrender.com/apiv1/quizfile?quiz=${encodeURIComponent(quizName)}&path=${encodeURIComponent(path + ".json")}`;
     const codeURL = `https://srednia-hawajska.onrender.com/apiv1/codefile?quiz=${encodeURIComponent(quizName)}&path=${encodeURIComponent(path + ".txt")}`;
 

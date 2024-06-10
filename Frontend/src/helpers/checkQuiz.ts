@@ -2,7 +2,6 @@ import { CodeSmell, QuizData, CheckQuizResult } from "../types/types";
 
 // works only if there are no two code smells witin the same line range
 export function checkQuiz(userInput: CodeSmell[], actualSmells: CodeSmell[]): CheckQuizResult {
-
     const correct: CodeSmell[] = [];
     const missed: CodeSmell[] = [];
     const extra: CodeSmell[] = [];

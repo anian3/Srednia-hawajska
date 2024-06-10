@@ -9,7 +9,7 @@ interface TextSelectorProps {
     quiz: string;
     smellData: CodeSmellData;
     language: string;
-    onSelect: (CodeSmell) => void
+    onSelect: (CodeSmell) => void;
 }
 
 const TextSelector: React.FC<TextSelectorProps> = ({ quiz, smellData, language, onSelect }) => {
@@ -144,9 +144,10 @@ const TextSelector: React.FC<TextSelectorProps> = ({ quiz, smellData, language, 
                                         // TODO: handle code smell selection
                                         console.log("Selected code smell: ", category);
                                         onSelect({
-                                            linebegin: Math.min(...selectedIndices)+1,
-                                            lineend: Math.max(...selectedIndices)+1,
-                                            category: category.toString()});
+                                            linebegin: Math.min(...selectedIndices) + 1,
+                                            lineend: Math.max(...selectedIndices) + 1,
+                                            category: category.toString(),
+                                        });
                                     }}
                                 />
                             </Card>

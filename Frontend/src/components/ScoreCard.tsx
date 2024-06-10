@@ -7,13 +7,15 @@ interface ScoreCardProps {
     maxScore: number;
 }
 
-const ScoreCard: React.FC<ScoreCardProps> = ({ score,maxScore }) => {
+const ScoreCard: React.FC<ScoreCardProps> = ({ score, maxScore }) => {
     return (
         <Card border="dark" bg="light" className="mb-3">
             <Card.Body>
                 <Card.Title>Final Score</Card.Title>
                 <Card.Text>
-                    <strong>{score}/{maxScore}</strong>
+                    <strong>
+                        {score}/{maxScore}
+                    </strong>
                 </Card.Text>
             </Card.Body>
         </Card>

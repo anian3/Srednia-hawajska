@@ -9,7 +9,7 @@ interface QuizResultProps {
     maxScore: number;
 }
 
-const QuizResult: React.FC<QuizResultProps> = ({ score, mistakes, maxScore}) => {
+const QuizResult: React.FC<QuizResultProps> = ({ score, mistakes, maxScore }) => {
     return (
         <div style={{ width: "16rem", margin: "auto" }}>
             <ScoreCard score={score} maxScore={maxScore} />
