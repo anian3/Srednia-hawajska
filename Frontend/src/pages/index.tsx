@@ -21,16 +21,16 @@ const MainPage = () => {
                 },
                 {
                     id: "cpp/file2cpp",
-                    name: "C++ quiz 2"
+                    name: "C++ quiz 2",
                 },
                 {
                     id: "python/file1",
-                    name: "Python quiz 1"
+                    name: "Python quiz 1",
                 },
                 {
                     id: "python/file2",
-                    name: "Python quiz 2"
-                }
+                    name: "Python quiz 2",
+                },
             ],
         },
     ];
