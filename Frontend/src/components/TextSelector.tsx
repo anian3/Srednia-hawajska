@@ -2,13 +2,16 @@ import React, { useState, useRef, useEffect } from "react";
 import { ListGroup, Card } from "react-bootstrap";
 import CodeSmellList from "./CodeSmellList";
 import { CodeSmellData } from "../types/types";
+import { Light as SyntaxHighlighter } from "react-syntax-highlighter";
+import { docco } from "react-syntax-highlighter/dist/cjs/styles/hljs";
 
 interface TextSelectorProps {
     quiz: string;
     smellData: CodeSmellData;
+    language: string;
 }
 
-const TextSelector: React.FC<TextSelectorProps> = ({ quiz, smellData }) => {
+const TextSelector: React.FC<TextSelectorProps> = ({ quiz, smellData, language }) => {
     const lines = quiz ? quiz.split("\n") : [];
     const [isDragging, setIsDragging] = useState(false);
     const [selectedIndices, setSelectedIndices] = useState<number[]>([]);
@@ -81,7 +84,7 @@ const TextSelector: React.FC<TextSelectorProps> = ({ quiz, smellData }) => {
     }, [popupPosition]);
 
     return (
-        <Card border="dark" bg="light" style={{ width: "36rem" }}>
+        <Card border="dark" bg="light" style={{ width: "48rem" }}>
             <Card.Body>
                 <Card.Title>Select a Line of Code</Card.Title>
                 <div style={{ fontFamily: "monospace" }}>
@@ -105,7 +108,19 @@ const TextSelector: React.FC<TextSelectorProps> = ({ quiz, smellData }) => {
                                         cursor: "pointer",
                                     }}
                                 >
-                                    {line}
+                                    <SyntaxHighlighter
+                                        language={language}
+                                        style={docco}
+                                        lineProps={{ style: { wordBreak: "break-all", whiteSpace: "pre-wrap" } }}
+                                        wrapLines={true}
+                                        customStyle={{
+                                            margin: 0,
+                                            padding: 0,
+                                            background: "none",
+                                        }}
+                                    >
+                                        {line}
+                                    </SyntaxHighlighter>
                                 </ListGroup.Item>
                             ))}
                         </ListGroup>
