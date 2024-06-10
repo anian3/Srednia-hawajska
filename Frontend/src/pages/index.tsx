@@ -19,6 +19,18 @@ const MainPage = () => {
                     id: "cpp/file1cpp",
                     name: "C++ quiz 1",
                 },
+                {
+                    id: "cpp/file2cpp",
+                    name: "C++ quiz 2"
+                },
+                {
+                    id: "python/file1",
+                    name: "Python quiz 1"
+                },
+                {
+                    id: "python/file2",
+                    name: "Python quiz 2"
+                }
             ],
         },
     ];

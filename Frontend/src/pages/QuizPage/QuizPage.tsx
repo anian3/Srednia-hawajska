@@ -55,10 +55,10 @@ const QuizPage = ({ selectedQuizConfigId, quizId, onBack }: QuizPageProps) => {
     const handleQuizSubmit = () => {
         const { correct, missed, extra, misclassified } = checkQuiz(marked, codeSmellData.codeSmells);
 
-        const missedMapped = missed.map((smell) => `Missed : ${smell.linebegin}-${smell.lineend}, ${smell.category}`);
-        const extraMapped = extra.map((smell) => `Extra : ${smell.linebegin}-${smell.lineend}, ${smell.category}`);
+        const missedMapped = missed.map((smell) => `Missed: ${smell.linebegin}-${smell.lineend}, ${smell.category}`);
+        const extraMapped = extra.map((smell) => `Extra: ${smell.linebegin}-${smell.lineend}, ${smell.category}`);
         const misclassifiedMapped = misclassified.map(
-            (smell) => `Misclassified : ${smell.linebegin}-${smell.lineend}, ${smell.category}`
+            (smell) => `Misclassified: ${smell.linebegin}-${smell.lineend}, ${smell.category}`
         );
 
         setScore(Math.max(0, maxScore - missed.length - extra.length - misclassified.length));
