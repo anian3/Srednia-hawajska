@@ -42,6 +42,26 @@ cd .../Backend/rest-service
 ./gradlew bootRun
 ```
 
+## Deployment
+Frontend:
+
+Build wersji produkcyjnej
+```
+npm run build
+```
+Deploy wersji produkcyjnej
+```
+npm run start
+```
+
+Backend:
+Plik Dockerfile w /Backend/rest-service
+
+## Manipulowanie dostepnymi quizami
+Kluczowy folder to Backend/rest-service/quizzes
+Tam należy umieścić folder z danymi quizu zdognie ze strukturą opisaną a Docs/api.md
+Potem taki quiz należy oznaczyć na frontendzie, w index.tsx
+
 ## Features
 - Użytkownik może wypełniać quiz, w którym zaznacza w których liniach widzi codesmell z wcześniej podanej listy.
 - Możliwość zaznaczania zarówno pojedynczych, jak i wieloliniowych codesmell.
