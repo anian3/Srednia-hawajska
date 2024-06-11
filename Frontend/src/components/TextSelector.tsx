@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { ListGroup, Card } from "react-bootstrap";
 import CodeSmellList from "./CodeSmellList";
-import { CodeSmellData } from "../types/types";
+import { CodeSmellData, CodeSmell } from "../types/types";
 import { Light as SyntaxHighlighter } from "react-syntax-highlighter";
 import { docco } from "react-syntax-highlighter/dist/cjs/styles/hljs";
 
@@ -9,9 +9,10 @@ interface TextSelectorProps {
     quiz: string;
     smellData: CodeSmellData;
     language: string;
+    onSelect: (CodeSmell) => void;
 }
 
-const TextSelector: React.FC<TextSelectorProps> = ({ quiz, smellData, language }) => {
+const TextSelector: React.FC<TextSelectorProps> = ({ quiz, smellData, language, onSelect }) => {
     const lines = quiz ? quiz.split("\n") : [];
     const [isDragging, setIsDragging] = useState(false);
     const [selectedIndices, setSelectedIndices] = useState<number[]>([]);
@@ -142,6 +143,11 @@ const TextSelector: React.FC<TextSelectorProps> = ({ quiz, smellData, language }
                                         category === category; // tp surpress linting errors as its not used
                                         // TODO: handle code smell selection
                                         console.log("Selected code smell: ", category);
+                                        onSelect({
+                                            linebegin: Math.min(...selectedIndices) + 1,
+                                            lineend: Math.max(...selectedIndices) + 1,
+                                            category: category.toString(),
+                                        });
                                     }}
                                 />
                             </Card>

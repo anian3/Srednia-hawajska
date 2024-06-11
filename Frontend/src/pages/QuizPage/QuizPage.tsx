@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import QuizResult from "../../components/QuizResult";
 import { Card } from "react-bootstrap";
-import { CodeSmellData } from "../../types/types";
+import { CodeSmell, CodeSmellData } from "../../types/types";
 import { fetchQuizData } from "./utils";
 import TextSelector from "../../components/TextSelector";
 import { FaUndo } from "react-icons/fa";
+import { checkQuiz } from "../../helpers/checkQuiz";
 
 interface QuizPageProps {
     selectedQuizConfigId: string;
@@ -16,6 +17,7 @@ const QuizPage = ({ selectedQuizConfigId, quizId, onBack }: QuizPageProps) => {
     const [quiz, setQuiz] = useState<string | undefined>(undefined);
     const [codeSmellData, setCodeSmellData] = useState<CodeSmellData | undefined>(undefined);
     const [language, setLanguage] = useState<string | undefined>(undefined);
+    const [maxScore, setMaxScore] = useState<number>(0);
 
     useEffect(() => {
         fetchQuizData(selectedQuizConfigId, quizId).then(
@@ -23,9 +25,17 @@ const QuizPage = ({ selectedQuizConfigId, quizId, onBack }: QuizPageProps) => {
                 setQuiz(fetchedQuiz);
                 setCodeSmellData(fetchedCodeSmellData);
                 setLanguage(fetchedLanguage);
+                setMaxScore(fetchedCodeSmellData.codeSmells.length);
             }
         );
     }, [selectedQuizConfigId, quizId]);
+
+    const [marked, setMarked] = useState<CodeSmell[]>([]);
+
+    const addSmell = (smell: CodeSmell) => {
+        setMarked([smell, ...marked]);
+        return;
+    };
 
     const [submitted, setSubmitted] = useState(false);
     const [score, setScore] = useState<number>(0);
@@ -43,11 +53,16 @@ const QuizPage = ({ selectedQuizConfigId, quizId, onBack }: QuizPageProps) => {
     }, [submitted]);
 
     const handleQuizSubmit = () => {
-        const calculatedScore = 8;
-        const quizMistakes = ["Mistake 1", "Mistake 2", "Mistake 3"];
+        const { correct, missed, extra, misclassified } = checkQuiz(marked, codeSmellData.codeSmells);
 
-        setScore(calculatedScore);
-        setMistakes(quizMistakes);
+        const missedMapped = missed.map((smell) => `Missed: ${smell.linebegin}-${smell.lineend}, ${smell.category}`);
+        const extraMapped = extra.map((smell) => `Extra: ${smell.linebegin}-${smell.lineend}, ${smell.category}`);
+        const misclassifiedMapped = misclassified.map(
+            (smell) => `Misclassified: ${smell.linebegin}-${smell.lineend}, ${smell.category}`
+        );
+
+        setScore(Math.max(0, maxScore - missed.length - extra.length - misclassified.length));
+        setMistakes([...extraMapped, ...missedMapped, ...misclassifiedMapped]);
         setSubmitted(true);
     };
 
@@ -62,8 +77,70 @@ const QuizPage = ({ selectedQuizConfigId, quizId, onBack }: QuizPageProps) => {
             {quiz !== undefined && codeSmellData !== undefined && (
                 <>
                     <div style={{ flex: 6, padding: "1rem" }}>
-                        <TextSelector quiz={quiz} smellData={codeSmellData} language={language} />
-                        {!submitted && <button onClick={handleQuizSubmit}>Submit</button>}
+                        <TextSelector quiz={quiz} smellData={codeSmellData} language={language} onSelect={addSmell} />
+                        {!submitted && (
+                            <>
+                                <button
+                                    style={{
+                                        backgroundColor: "#008CBA", // Blue background
+                                        border: "2px solid #008CBA", // Same blue border
+                                        color: "white", // White text
+                                        padding: "10px 20px", // Padding for button size
+                                        textAlign: "center", // Centered text
+                                        textDecoration: "none", // No underline
+                                        display: "inline-block", // Inline-block for better control
+                                        fontSize: "16px", // Font size
+                                        margin: "10px 2px", // Margin for spacing
+                                        cursor: "pointer", // Pointer cursor on hover
+                                        borderRadius: "12px", // Rounded corners
+                                        transition: "background-color 0.3s ease", // Smooth background transition
+                                    }}
+                                    onMouseOver={(e) => (e.currentTarget.style.backgroundColor = "#007BB5")}
+                                    onMouseOut={(e) => (e.currentTarget.style.backgroundColor = "#008CBA")}
+                                    onMouseDown={(e) => {
+                                        e.currentTarget.style.backgroundColor = "#005F73";
+                                        e.currentTarget.style.border = "2px solid #005F73";
+                                    }}
+                                    onMouseUp={(e) => {
+                                        e.currentTarget.style.backgroundColor = "#007BB5";
+                                        e.currentTarget.style.border = "2px solid #008CBA";
+                                    }}
+                                    onClick={handleQuizSubmit}
+                                >
+                                    Submit
+                                </button>
+                                <button
+                                    type="submit"
+                                    style={{
+                                        backgroundColor: "#008CBA", // Blue background
+                                        border: "2px solid #008CBA", // Same blue border
+                                        color: "white", // White text
+                                        padding: "10px 20px", // Padding for button size
+                                        textAlign: "center", // Centered text
+                                        textDecoration: "none", // No underline
+                                        display: "inline-block", // Inline-block for better control
+                                        fontSize: "16px", // Font size
+                                        margin: "10px 2px", // Margin for spacing
+                                        cursor: "pointer", // Pointer cursor on hover
+                                        borderRadius: "12px", // Rounded corners
+                                        transition: "background-color 0.3s ease", // Smooth background transition
+                                    }}
+                                    onMouseOver={(e) => (e.currentTarget.style.backgroundColor = "#007BB5")}
+                                    onMouseOut={(e) => (e.currentTarget.style.backgroundColor = "#008CBA")}
+                                    onMouseDown={(e) => {
+                                        e.currentTarget.style.backgroundColor = "#005F73";
+                                        e.currentTarget.style.border = "2px solid #005F73";
+                                    }}
+                                    onMouseUp={(e) => {
+                                        e.currentTarget.style.backgroundColor = "#007BB5";
+                                        e.currentTarget.style.border = "2px solid #008CBA";
+                                    }}
+                                    onClick={() => setMarked([])}
+                                >
+                                    Reset
+                                </button>
+                            </>
+                        )}
                     </div>
                     <div style={{ flex: 1, padding: "1rem" }}>
                         <Card border="dark" bg="light" className="mb-3" style={{ width: "16rem" }}>
@@ -71,7 +148,7 @@ const QuizPage = ({ selectedQuizConfigId, quizId, onBack }: QuizPageProps) => {
                                 <Card.Title>Time: {formatTime(elapsedTime)}</Card.Title>
                             </Card.Body>
                         </Card>
-                        {submitted && <QuizResult score={score} mistakes={mistakes} />}
+                        {submitted && <QuizResult score={score} maxScore={maxScore} mistakes={mistakes} />}
                     </div>
                     {submitted && (
                         <div
